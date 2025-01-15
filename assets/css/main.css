@@ -4,4 +4,6 @@
 :root {
     --ui-bg: #fff;
     --ui-text: #000;
+    --ui-text-highlighted: #000;
+    --ui-primary: #000;
 }

@@ -7,7 +7,7 @@
             v-for="template in templates"
             :key="template.id"
             @click="selectTemplate(template)"
-            class="min-w-[200px] h-24 border-2 rounded-lg p-2 flex items-center justify-center"
+            class="min-w-[200px] h-24 border-2 rounded-lg p-2 flex items-center justify-center cursor-pointer hover:bg-gray-100 transition-colors duration-300"
             :class="selectedTemplate.id === template.id ? 'border-primary-600' : 'border-gray-200'"
         >
           <component :is="template.preview" class="w-full h-full"/>
@@ -21,20 +21,19 @@
           <!-- Tag Input -->
           <div>
             <label class="block text-sm font-medium text-gray-700">Tag</label>
-            <input
+            <UInput
                 v-model="properties.tag"
-                type="text"
-                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
+                class=" mt-1 block text-primary w-full rounded-md border-gray-300 shadow-sm"
             />
           </div>
 
           <!-- Title Input -->
           <div>
             <label class="block text-sm font-medium text-gray-700">Title</label>
-            <input
+            <UInput
                 v-model="properties.title"
                 type="text"
-                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
+                class="mt-1 block text-primary w-full rounded-md border-gray-300 shadow-sm"
             />
           </div>
 
@@ -53,19 +52,20 @@
 
           <!-- Background Options -->
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Background</label>
-            <div class="grid grid-cols-4 gap-2">
+            <label class="block text-sm font-medium text-gray-700 mb-4">Background</label>
+            <div class="flex flex-wrap gap-2">
               <button
-                  v-for="color in gradientColors"
-                  :key="color.start"
+                  v-for="(color, index) in gradientColors"
+                  :key="index"
                   @click="selectGradient(color)"
-                  class="w-12 h-12 rounded-lg"
+                  class="w-8 h-8 rounded-lg cursor-pointer"
                   :style="{
-                  background: `linear-gradient(to right, ${color.start}, ${color.end})`
-                }"
+        background: `linear-gradient(to right, ${color.colorStops.join(', ')})`
+      }"
               />
             </div>
           </div>
+
         </div>
       </div>
 
@@ -86,7 +86,7 @@
           </div>
         </div>
 
-        <Export />
+        <Export/>
 
       </div>
     </div>
@@ -115,24 +115,16 @@ const templates = ref([
 
 const selectedTemplate = ref(templates.value[0])
 
-const gradientColors = ref([
-  {start: '#FF0080', end: '#FF8C00'},
-  {start: '#7928CA', end: '#FF0080'},
-  {start: '#FF4D4D', end: '#F9CB28'},
-  {start: '#00DFD8', end: '#007CF0'},
-  {start: '#7928CA', end: '#00DFD8'},
-  {start: '#FF4D4D', end: '#F9CB28'},
-  {start: '#00DFD8', end: '#007CF0'},
-  {start: '#7928CA', end: '#00DFD8'},
-])
-
 const selectTemplate = (template) => {
   selectedTemplate.value = template
 }
 
 const selectGradient = (gradient) => {
-  properties.value.gradient.start = gradient.start
-  properties.value.gradient.end = gradient.end
+  properties.value.gradient = {
+    start: gradient.colorStops[0],
+    end: gradient.colorStops[gradient.colorStops.length - 1],
+    angle: 45
+  }
 }
 
 const handleLogoUpload = (event) => {

@@ -11,7 +11,7 @@
       </slot>
 
       <NuxtLink to="https://github.com/paulmarniquet/ogeez" class="text-primary hover:text-primary-600">
-        <UIcon name="grommet-icons:github" class="w-5 h-5 text-primary-500" />
+        <UIcon name="grommet-icons:github" class="w-8 h-8 text-primary-500" />
       </NuxtLink>
     </header>
     <main>
