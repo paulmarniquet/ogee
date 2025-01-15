@@ -4,10 +4,8 @@
 
 <template>
     <header class="flex items-center justify-between p-4 max-w-6xl mx-auto bg-white">
-      <slot name="header">
-        <h1 class="text-2xl font-bold text-primary">
-          ogeez
-        </h1>
+      <slot name="header" class="flex items-center space-x-4">
+        <NuxtImg src="~/assets/logo.png" alt="ogeez" width="32" height="32" />
       </slot>
 
       <NuxtLink to="https://github.com/paulmarniquet/ogeez" class="text-primary hover:text-primary-600">
