@@ -1,3 +1,12 @@
+<script setup lang="ts">
+
+</script>
+
+
 <template>
-    <Generator />
+  <UApp>
+    <NuxtLayout name="default">
+      <Generator/>
+    </NuxtLayout>
+  </UApp>
 </template>

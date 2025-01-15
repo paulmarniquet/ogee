@@ -17,10 +17,10 @@ const exportImage = async () => {
 
 <template>
   <button class="fixed bottom-4 right-[50%] p-2 w-24 bg-white shadow-lg z-50 rounded-lg text-primary
-    transform translate-x-1/2 hover:scale-105 transition-transform duration-300 ease-in-out"
+    transform translate-x-1/2 hover:scale-105 transition-transform duration-300 ease-in-out flex items-center justify-center space-x-2"
           @click="exportImage">
-    <LucideDownload />
-    Export
+    <UIcon name="line-md:downloading-loop" class="w-4 h-4 text-primary" />
+    <span>Export</span>
   </button>
 </template>
 
