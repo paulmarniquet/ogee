@@ -10,7 +10,10 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@nuxtjs/tailwindcss": "6.13.1",
+    "html2canvas": "^1.4.1",
     "nuxt": "^3.15.1",
+    "nuxt-lucide-icons": "1.0.5",
     "vue": "latest",
     "vue-router": "latest"
   }
