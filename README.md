@@ -1,4 +1,6 @@
-# OGeez
+
+![image (2)](https://github.com/user-attachments/assets/8260dbc3-58b0-4fae-92f8-fb047e0d222e)
+
 ### The ultimate Open Graph image generator
 
 [![license](https://img.shields.io/github/license/paulmarniquet/ogeez?color=black)](https://github.com/paulmarniquet/ogeez/blob/main/LICENSE)
@@ -12,7 +14,7 @@
     - [🗺️ Status & Roadmap](#status--roadmap)
 - [✨ Features](#-features)
     - [🔑 Core Features](#core-features)
-    - [🤔 Why Choose OGeez?](#why-choose-ogeez)
+    - [🤔 Why Choose ogeez?](#why-choose-ogeez)
 - [🛠️ Tech Stack](#-tech-stack)
 - [💬 Community & Support](#-community--support)
     - [💡 How to Suggest Features](#how-to-suggest-features)
@@ -22,7 +24,7 @@
 
 ## 📋 Overview
 
-> 💡 **OGeez** is a modern, dynamic Open Graph image generator tailored to create eye-catching visuals for social media platforms.
+> 💡 **ogeez** is a modern, dynamic Open Graph image generator tailored to create eye-catching visuals for social media platforms.
 
 ### Vision & Goals
 
@@ -70,7 +72,7 @@ OGeez aims to simplify the creation of Open Graph images with customizable templ
 
 ### Why Choose OGeez?
 
-- **User-Friendly**: OGeez provides an intuitive interface for non-technical users while offering advanced capabilities for developers.
+- **User-Friendly**: ogeez provides an intuitive interface for non-technical users while offering advanced capabilities for developers.
 - **Highly Customizable**: Adapt templates to fit your branding effortlessly.
 - **API-Driven**: Automate workflows with powerful API integrations.
 - **Free and Open-Source**: Built for the community, by the community.
