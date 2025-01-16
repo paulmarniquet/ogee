@@ -23,7 +23,7 @@
             <label class="block text-sm font-medium text-gray-700">Tag</label>
             <UInput
                 v-model="properties.tag"
-                class=" mt-1 block text-primary w-full rounded-md border-gray-300 shadow-sm"
+                class=" mt-1 block text-primary w-full rounded-md border-gray-300"
             />
           </div>
 
@@ -31,9 +31,9 @@
           <div>
             <label class="block text-sm font-medium text-gray-700">Title</label>
             <UInput
+                color="gray" variant="outline"
                 v-model="properties.title"
-                type="text"
-                class="mt-1 block text-primary w-full rounded-md border-gray-300 shadow-sm"
+                class="mt-1 block text-primary w-full rounded-md"
             />
           </div>
 
@@ -45,7 +45,7 @@
                   type="file"
                   @change="handleLogoUpload"
                   accept="image/*"
-                  class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary-50 file:text-primary-700 hover:file:bg-primary-100"
+                  class="block w-full file:cursor-pointer text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-1 file:border-gray-300 file:text-sm file:font-semibold file:bg-primary-50 file:text-primary-700 hover:file:bg-primary-100"
               />
             </div>
           </div>
