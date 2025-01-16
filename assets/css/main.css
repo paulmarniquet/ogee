@@ -7,3 +7,7 @@
     --ui-text-highlighted: #0B1215;
     --ui-primary: #0B1215;
 }
+
+.title {
+    font-family: 'Righteous', sans-serif;
+}
