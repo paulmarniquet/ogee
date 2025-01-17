@@ -1,6 +1,5 @@
-import {ref} from "vue";
 
-const solidColors = [
+export const solidColors = [
     // red/pink
     "#D14D72",
     "#FF8080",
