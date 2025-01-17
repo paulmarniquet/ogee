@@ -21,6 +21,7 @@ export default defineNuxtConfig({
         '@nuxt/ui',
         ['@nuxtjs/google-fonts',
         {
+            download: true,
             families: {
                 'Inter': '200..700',
             },

@@ -10,13 +10,14 @@
             class="min-w-[200px] h-24 border-2 rounded-lg p-2 flex items-center justify-center cursor-pointer hover:bg-gray-100 transition-colors duration-300"
             :class="selectedTemplate.id === template.id ? 'border-primary-600' : 'border-gray-200'"
         >
-          <component :is="template.preview" class="w-full h-full"/>
+          <component :is="template.preview" :properties="properties" class="w-full h-full"/>
         </button>
       </div>
 
       <!-- Properties Panel -->
       <div class="bg-white rounded-lg shadow-sm p-6">
-        <h2 class="text-lg font-semibold mb-4">Template Properties</h2>
+        <h2 class="text-lg font-semibold mb-2">Template Properties</h2>
+        <h3 class="text-sm text-gray-500 mb-4">Customize the properties of the selected template</h3>
         <div class="space-y-4">
           <div v-for="key in Object.keys(properties)" :key="key">
             <component
@@ -33,30 +34,39 @@
         <div class="bg-white shadow-sm p-6">
           <div
               class="w-full aspect-[1200/630] rounded-lg overflow-hidden preview-canvas"
-              :style="{
-              background: `linear-gradient(${properties.gradient.angle}deg, ${properties.gradient.start}, ${properties.gradient.end})`
+              :style="{background: `linear-gradient(${properties.gradient?.angle || 0}deg, ${sanitizeColor(properties.gradient?.start)}, ${sanitizeColor(properties.gradient?.end)})`
             }"
           >
             <div class="w-full h-full flex flex-col items-center justify-center p-12 text-white">
-              <p class="text-lg mb-4">{{ properties.tag }}</p>
-              <h1 class="text-4xl font-bold text-center">{{ properties.title }}</h1>
+              <p v-if="properties.tag?.text !== undefined" class="text-lg mb-4">{{ properties.tag?.text }}</p>
+              <h1
+                  class="text-center"
+                  :style="{
+                  fontFamily: properties.title?.fontFamily,
+                  fontWeight: properties.title?.fontWeight,
+                  fontSize: properties.title?.fontSize + 'px',
+                  color: sanitizeColor(properties.title?.color),
+                }"
+              >
+                {{ properties.title?.text }}
+              </h1>
               <img v-if="properties.logo" :src="properties.logo" class="mt-8 h-16" alt="Logo"/>
             </div>
           </div>
         </div>
 
-        <Export />
+        <Export/>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import PropTag from '@/components/properties/PropTag.vue';
-import PropTitle from '@/components/properties/PropTitle.vue';
-import PropLogo from '@/components/properties/PropLogo.vue';
-import PropGradient from '@/components/properties/PropGradient.vue';
+import {ref, watch} from "vue";
+import PropTag from "@/components/properties/PropTag.vue";
+import PropTitle from "@/components/properties/PropTitle.vue";
+import PropLogo from "@/components/properties/PropLogo.vue";
+import PropGradient from "@/components/properties/PropGradient.vue";
 
 const propertyComponents = {
   tag: PropTag,
@@ -65,27 +75,83 @@ const propertyComponents = {
   gradient: PropGradient,
 };
 
-const properties = ref({
-  tag: 'Marketing',
-  title: 'Generate Beautiful Open Graph Images',
-  logo: null,
-  gradient: {
-    start: '#FF0080',
-    end: '#FF8C00',
-    angle: 45,
+const templateCategories = ref([
+  {
+    id: "social-media",
+    name: "Réseaux Sociaux",
+    templates: [
+      {
+        id: 1,
+        name: "Post Instagram",
+        preview: "InstagramPreview",
+        properties: {
+          title: {
+            text: "Beautiful Open Graph Images",
+            fontFamily: "Roboto",
+            fontWeight: "Regular",
+            fontSize: 32,
+            color: "#FFFFFF",
+          },
+          tag: {
+            text: "Marketing",
+            fontFamily: "Roboto",
+            fontWeight: "Regular",
+            fontSize: 16,
+            color: "#FFFFFF",
+          },
+          logo: null,
+          gradient: {
+            start: "#FF0080",
+            end: "#FF8C00",
+            angle: 45,
+          },
+        },
+      },
+      {
+        id: 2,
+        name: "Post Facebook",
+        preview: "FacebookPreview",
+        properties: {
+          title: {
+            text: "Votre texte ici",
+            fontFamily: "Roboto",
+            fontWeight: "Regular",
+            fontSize: 32,
+            color: "#FFFFFF",
+          },
+          gradient: {
+            start: "#FF0080",
+            end: "#FF8C00",
+            angle: 45,
+          },
+        },
+      },
+    ],
   },
-});
-
-const templates = ref([
-  {id: 1, preview: 'div', name: 'Default'},
-  {id: 2, preview: 'div', name: 'Centered'},
-  {id: 3, preview: 'div', name: 'Split'},
-  {id: 4, preview: 'div', name: 'Bottom'},
 ]);
 
+const templates = ref(
+    templateCategories.value.flatMap((category) => category.templates)
+);
+
 const selectedTemplate = ref(templates.value[0]);
+const properties = ref({...selectedTemplate.value.properties});
 
 const selectTemplate = (template) => {
   selectedTemplate.value = template;
+  properties.value = JSON.parse(JSON.stringify(template.properties));
 };
+
+watch(selectedTemplate, (newTemplate) => {
+  if (newTemplate) {
+    properties.value = {...newTemplate.properties};
+  }
+});
+
+const sanitizeColor = (color) => {
+  const hexRegex = /^#([0-9A-F]{3}){1,2}$/i;
+  const rgbRegex = /^rgb\((\d{1,3}),\s*(\d{1,3}),\s*(\d{1,3})\)$/;
+  return hexRegex.test(color) || rgbRegex.test(color) ? color : '#000000';
+};
+
 </script>

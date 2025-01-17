@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import html2canvas from "html2canvas";
+import html2canvas from "html2canvas-pro";
 
 const exportImage = async () => {
   const element: HTMLElement | null = document.querySelector('.preview-canvas')
   try {
     const canvas = await html2canvas(element as HTMLElement)
     const link = document.createElement('a')
-    link.download = 'ogeez-image.png'
+    link.download = 'ogeez.png'
     link.href = canvas.toDataURL('image/png')
     link.click()
   } catch (error) {

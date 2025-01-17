@@ -13,7 +13,7 @@
     "@nuxt/image": "^1.9.0",
     "@nuxt/ui": "3.0.0-alpha.11",
     "@nuxtjs/google-fonts": "3.2.0",
-    "html2canvas": "^1.4.1",
+    "html2canvas-pro": "^1.5.8",
     "nuxt": "^3.15.1",
     "vue": "latest",
     "vue-router": "latest"
