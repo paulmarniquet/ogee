@@ -34,18 +34,19 @@
         <div class="bg-white shadow-sm p-6">
           <div
               class="w-full aspect-[1200/630] rounded-lg overflow-hidden preview-canvas"
-              :style="{background: `linear-gradient(${properties.gradient?.angle || 0}deg, ${sanitizeColor(properties.gradient?.start)}, ${sanitizeColor(properties.gradient?.end)})`
+              :style="{
+              background: `linear-gradient(${properties.gradient?.angle}deg, ${properties.gradient?.start}, ${properties.gradient?.end})`
             }"
           >
             <div class="w-full h-full flex flex-col items-center justify-center p-12 text-white">
-              <p v-if="properties.tag?.text !== undefined" class="text-lg mb-4">{{ properties.tag?.text }}</p>
+              <p v-if="properties.tag?.text !== undefined" class="text-lg mb-4">{{ properties.tag.text }}</p>
               <h1
                   class="text-center"
                   :style="{
                   fontFamily: properties.title?.fontFamily,
                   fontWeight: properties.title?.fontWeight,
                   fontSize: properties.title?.fontSize + 'px',
-                  color: sanitizeColor(properties.title?.color),
+                  color: properties.title?.color,
                 }"
               >
                 {{ properties.title?.text }}
@@ -99,12 +100,12 @@ const templateCategories = ref([
             fontSize: 16,
             color: "#FFFFFF",
           },
-          logo: null,
           gradient: {
             start: "#FF0080",
             end: "#FF8C00",
             angle: 45,
           },
+          logo: null,
         },
       },
       {
@@ -147,11 +148,4 @@ watch(selectedTemplate, (newTemplate) => {
     properties.value = {...newTemplate.properties};
   }
 });
-
-const sanitizeColor = (color) => {
-  const hexRegex = /^#([0-9A-F]{3}){1,2}$/i;
-  const rgbRegex = /^rgb\((\d{1,3}),\s*(\d{1,3}),\s*(\d{1,3})\)$/;
-  return hexRegex.test(color) || rgbRegex.test(color) ? color : '#000000';
-};
-
 </script>
