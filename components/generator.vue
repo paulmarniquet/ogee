@@ -39,7 +39,14 @@
             }"
           >
             <div class="w-full h-full flex flex-col items-center justify-center p-12 text-white">
-              <p v-if="properties.tag?.text !== undefined" class="text-lg mb-4">{{ properties.tag.text }}</p>
+              <p v-if="properties.tag?.text !== undefined"
+                 :style="{
+                  fontFamily: properties.tag?.fontFamily,
+                  fontWeight: properties.tag?.fontWeight,
+                  fontSize: properties.tag?.fontSize + 'px',
+                  color: properties.tag?.color,
+                }"
+                 class="text-lg mb-4">{{ properties.tag.text }}</p>
               <h1
                   class="text-center"
                   :style="{
@@ -100,12 +107,12 @@ const templateCategories = ref([
             fontSize: 16,
             color: "#FFFFFF",
           },
+          logo: null,
           gradient: {
             start: "#FF0080",
             end: "#FF8C00",
             angle: 45,
           },
-          logo: null,
         },
       },
       {

@@ -1,21 +1,3 @@
-<script setup lang="ts">
-const props = defineProps({
-  title: {
-    type: Object,
-    required: true,
-  },
-});
-const emit = defineEmits(['update:title']);
-
-const handleTextChange = (event: Event) => {
-  emit('update:title', {...props.title, text: (event.target as HTMLInputElement).value});
-};
-
-const handleFontChange = (key: keyof typeof props.title) => (value: string | number) => {
-  emit('update:title', {...props.title, [key]: value});
-};
-</script>
-
 <template>
   <label class="block text-sm font-medium text-gray-700">Title</label>
   <div class="space-y-4">
@@ -29,8 +11,34 @@ const handleFontChange = (key: keyof typeof props.title) => (value: string | num
           class="mt-1 block text-primary w-full rounded-md"
       />
       <!-- Font Settings -->
-      <FontSettings :font="props.title" @change="handleFontChange"/>
+      <FontSettings
+          :font="props.title.fontFamily"
+          :size="props.title.fontSize"
+          :color="props.title.color"
+          :weight="props.title.fontWeight"
+          @update:font="(value) => updateTitleProperty('fontFamily', value)"
+          @update:size="(value) => updateTitleProperty('fontSize', value)"
+          @update:color="(value) => updateTitleProperty('color', value)"
+          @update:weight="(value) => updateTitleProperty('fontWeight', value)"
+      />
     </div>
-
   </div>
 </template>
+
+<script setup lang="ts">
+const props = defineProps({
+  title: {
+    type: Object,
+    required: true,
+  },
+});
+const emit = defineEmits(['update:title']);
+
+const handleTextChange = (event: Event) => {
+  emit('update:title', { ...props.title, text: (event.target as HTMLInputElement).value });
+};
+
+const updateTitleProperty = (key: string, value: any) => {
+  emit('update:title', { ...props.title, [key]: value });
+};
+</script>
