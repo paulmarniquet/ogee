@@ -6,7 +6,7 @@ const exportImage = async () => {
   try {
     const canvas = await html2canvas(element as HTMLElement)
     const link = document.createElement('a')
-    link.download = 'og-image.png'
+    link.download = 'ogeez-image.png'
     link.href = canvas.toDataURL('image/png')
     link.click()
   } catch (error) {
@@ -16,12 +16,13 @@ const exportImage = async () => {
 </script>
 
 <template>
-  <button class="fixed bottom-4 right-[50%] p-2 w-24 bg-white shadow-lg z-50 rounded-lg text-primary cursor-pointer
-    transform translate-x-1/2 hover:scale-105 transition-transform duration-300 ease-in-out flex items-center justify-center space-x-2"
+  <UButton
+      class="fixed bottom-4 right-[50%] p-2 px-4 bg-black hover:bg-black text-black shadow-lg z-50 rounded-lg cursor-pointer group
+    transform translate-x-1/2 hover:scale-105 transition-transform duration-300 ease-in-out flex items-center justify-center space-x-1"
           @click="exportImage">
-    <UIcon name="line-md:downloading-loop" class="w-4 h-4 text-primary" />
-    <span>Export</span>
-  </button>
+    <UIcon name="line-md:downloading-loop" class="text-white w-5 h-5 opacity-80 group-hover:opacity-100 transition-opacity duration-300 ease-in-out" />
+    <span class="text-white">Generate</span>
+  </UButton>
 </template>
 
 <style scoped>

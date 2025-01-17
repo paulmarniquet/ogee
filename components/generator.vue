@@ -58,7 +58,6 @@ import PropTitle from '@/components/properties/PropTitle.vue';
 import PropLogo from '@/components/properties/PropLogo.vue';
 import PropGradient from '@/components/properties/PropGradient.vue';
 
-// Define property components mapping
 const propertyComponents = {
   tag: PropTag,
   title: PropTitle,

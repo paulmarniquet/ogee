@@ -2,9 +2,6 @@
 @import "@nuxt/ui";
 
 :root {
-    --ui-bg: #fff;
-    --ui-text: #0B1215;
-    --ui-text-highlighted: #0B1215;
     --ui-primary: #0B1215;
     --ui-bg-inverted: #0B1215;
 }

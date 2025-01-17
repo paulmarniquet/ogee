@@ -2,7 +2,7 @@
 import {ref, defineProps, defineEmits} from 'vue';
 import {gradientColors, solidColors} from "~/utils/colors";
 
-defineProps({
+const props = defineProps({
   gradient: {
     type: Object,
     required: true,
@@ -20,20 +20,20 @@ const items = ref([
 
 const emit = defineEmits(['update:gradient']);
 
-// Fonction pour sélectionner un dégradé
-const selectGradient = (gradient: any) => {
+const selectGradient = (newGradient: any) => {
   const updatedGradient = {
-    start: gradient.colorStops[0],
-    end: gradient.colorStops[gradient.colorStops.length - 1],
-    angle: 45,
+    start: newGradient.colorStops[0],
+    end: newGradient.colorStops[newGradient.colorStops.length - 1],
+    angle: newGradient.angle !== undefined ? newGradient.angle : props.gradient.angle,
   };
   emit('update:gradient', updatedGradient);
 };
 
-const activeTab = ref(items.value[0].key); // Détermine l'onglet actif
+const activeTab = ref(items.value[0].key);
 </script>
 
 <template>
+
   <!-- Background Options -->
   <div>
     <label class="block text-sm font-medium text-gray-700 mb-4">Background</label>
@@ -53,14 +53,14 @@ const activeTab = ref(items.value[0].key); // Détermine l'onglet actif
                  transition duration-300 ease-in-out focus:outline-none focus:border-2 focus:border-primary-600
                  focus:hover:scale-100"
                 :style="{
-                background: `linear-gradient(to right, ${color.colorStops.join(', ')})`
+                background: `linear-gradient(${gradient.angle}deg, ${color.colorStops[0]}, ${color.colorStops[color.colorStops.length - 1]})`
               }"
             />
           </div>
 
           <label class="block text-sm mt-4 font-medium text-gray-700">Angle</label>
           <div class="flex items-center justify-center gap-4">
-            <USlider :default-value="gradient.angle" :min="0" :max="360" v-model="gradient.angle" class="mt-2"/>
+            <USlider :min="0" :max="360" v-model="gradient.angle" class="mt-2"/>
             <span class="font-semibold">{{ gradient.angle }}°</span>
           </div>
         </div>
