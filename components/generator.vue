@@ -18,54 +18,13 @@
       <div class="bg-white rounded-lg shadow-sm p-6">
         <h2 class="text-lg font-semibold mb-4">Template Properties</h2>
         <div class="space-y-4">
-          <!-- Tag Input -->
-          <div>
-            <label class="block text-sm font-medium text-gray-700">Tag</label>
-            <UInput
-                v-model="properties.tag"
-                class=" mt-1 block text-primary w-full rounded-md border-gray-300"
+          <div v-for="key in Object.keys(properties)" :key="key">
+            <component
+                v-model:[key]="properties[key]"
+                :is="propertyComponents[key]"
+                class="mt-2"
             />
           </div>
-
-          <!-- Title Input -->
-          <div>
-            <label class="block text-sm font-medium text-gray-700">Title</label>
-            <UInput
-                color="gray" variant="outline"
-                v-model="properties.title"
-                class="mt-1 block text-primary w-full rounded-md"
-            />
-          </div>
-
-          <!-- Logo Upload -->
-          <div>
-            <label class="block text-sm font-medium text-gray-700">Logo</label>
-            <div class="mt-4 flex items-center">
-              <input
-                  type="file"
-                  @change="handleLogoUpload"
-                  accept="image/*"
-                  class="block w-full file:cursor-pointer text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-1 file:border-gray-300 file:text-sm file:font-semibold file:bg-primary-50 file:text-primary-700 hover:file:bg-primary-100"
-              />
-            </div>
-          </div>
-
-          <!-- Background Options -->
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-4">Background</label>
-            <div class="flex flex-wrap gap-2">
-              <button
-                  v-for="(color, index) in gradientColors"
-                  :key="index"
-                  @click="selectGradient(color)"
-                  class="w-8 h-8 rounded-lg cursor-pointer"
-                  :style="{
-        background: `linear-gradient(to right, ${color.colorStops.join(', ')})`
-      }"
-              />
-            </div>
-          </div>
-
         </div>
       </div>
 
@@ -86,15 +45,26 @@
           </div>
         </div>
 
-        <Export/>
-
+        <Export />
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import {ref} from 'vue'
+import { ref } from 'vue';
+import PropTag from '@/components/properties/PropTag.vue';
+import PropTitle from '@/components/properties/PropTitle.vue';
+import PropLogo from '@/components/properties/PropLogo.vue';
+import PropGradient from '@/components/properties/PropGradient.vue';
+
+// Define property components mapping
+const propertyComponents = {
+  tag: PropTag,
+  title: PropTitle,
+  logo: PropLogo,
+  gradient: PropGradient,
+};
 
 const properties = ref({
   tag: 'Marketing',
@@ -103,42 +73,20 @@ const properties = ref({
   gradient: {
     start: '#FF0080',
     end: '#FF8C00',
-    angle: 45
-  }
-})
+    angle: 45,
+  },
+});
 
 const templates = ref([
   {id: 1, preview: 'div', name: 'Default'},
   {id: 2, preview: 'div', name: 'Centered'},
   {id: 3, preview: 'div', name: 'Split'},
-])
+  {id: 4, preview: 'div', name: 'Bottom'},
+]);
 
-const selectedTemplate = ref(templates.value[0])
+const selectedTemplate = ref(templates.value[0]);
 
 const selectTemplate = (template) => {
-  selectedTemplate.value = template
-}
-
-const selectGradient = (gradient) => {
-  properties.value.gradient = {
-    start: gradient.colorStops[0],
-    end: gradient.colorStops[gradient.colorStops.length - 1],
-    angle: 45
-  }
-}
-
-const handleLogoUpload = (event) => {
-  const file = event.target.files[0]
-  if (file) {
-    const reader = new FileReader()
-    reader.onload = (e) => {
-      properties.value.logo = e.target.result
-    }
-    reader.readAsDataURL(file)
-  }
-}
+  selectedTemplate.value = template;
+};
 </script>
-
-<style>
-
-</style>

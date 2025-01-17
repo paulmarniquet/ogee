@@ -16,7 +16,7 @@ const exportImage = async () => {
 </script>
 
 <template>
-  <button class="fixed bottom-4 right-[50%] p-2 w-24 bg-white shadow-lg z-50 rounded-lg text-primary
+  <button class="fixed bottom-4 right-[50%] p-2 w-24 bg-white shadow-lg z-50 rounded-lg text-primary cursor-pointer
     transform translate-x-1/2 hover:scale-105 transition-transform duration-300 ease-in-out flex items-center justify-center space-x-2"
           @click="exportImage">
     <UIcon name="line-md:downloading-loop" class="w-4 h-4 text-primary" />
