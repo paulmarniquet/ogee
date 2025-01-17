@@ -1,5 +1,8 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+    ui: {
+        colorMode: false
+    },
     app: {
         head: {
             title: 'ogeez - Sublimate Your Presence',
