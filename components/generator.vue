@@ -41,7 +41,7 @@
             <div class="w-full h-full flex flex-col items-center justify-center p-12 text-white">
               <p v-if="properties.tag?.text !== undefined"
                  :style="{
-                  fontFamily: properties.tag?.fontFamily,
+                  fontFamily: properties.tag?.fontFamily + ', sans-serif' ?? 'Roboto, sans-serif',
                   fontWeight: properties.tag?.fontWeight,
                   fontSize: properties.tag?.fontSize + 'px',
                   color: properties.tag?.color,
@@ -50,7 +50,7 @@
               <h1
                   class="text-center"
                   :style="{
-                  fontFamily: properties.title?.fontFamily,
+                  fontFamily: properties.title?.fontFamily + ', sans-serif' ?? 'Roboto, sans-serif',
                   fontWeight: properties.title?.fontWeight,
                   fontSize: properties.title?.fontSize + 'px',
                   color: properties.title?.color,
@@ -95,15 +95,15 @@ const templateCategories = ref([
         properties: {
           title: {
             text: "Beautiful Open Graph Images",
-            fontFamily: "Roboto",
-            fontWeight: "Regular",
+            fontFamily: "Inter",
+            fontWeight: 500,
             fontSize: 32,
             color: "#FFFFFF",
           },
           tag: {
             text: "Marketing",
-            fontFamily: "Roboto",
-            fontWeight: "Regular",
+            fontFamily: "Inter",
+            fontWeight: 500,
             fontSize: 16,
             color: "#FFFFFF",
           },
@@ -123,7 +123,7 @@ const templateCategories = ref([
           title: {
             text: "Votre texte ici",
             fontFamily: "Roboto",
-            fontWeight: "Regular",
+            fontWeight: 500,
             fontSize: 32,
             color: "#FFFFFF",
           },

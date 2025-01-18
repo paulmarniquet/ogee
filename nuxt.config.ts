@@ -17,17 +17,42 @@ export default defineNuxtConfig({
         },
     },
     compatibilityDate: '2024-11-01',
-    modules: ['@nuxt/ui', ['@nuxtjs/google-fonts',
-    {
-        download: true,
-        families: {
-            'Inter': '200..700',
-        },
-    },
-], '@nuxt/scripts'],
+    modules: [
+        '@nuxt/ui',
+        '@nuxt/scripts',
+        [
+            '@nuxtjs/google-fonts',
+            {
+                download: true, // Télécharge les polices pour un usage local
+                inject: true,   // Injecte les polices dans le projet
+                overwriting: false, // Évite de surcharger les polices téléchargées
+                families: {
+                    'Inter': true,
+                    'Open Sans': true,
+                    'Noto Sans': true,
+                    'Roboto': true,
+                    'Poppins': true,
+                    'Montserrat': true,
+                    'Lato': true,
+                    'Manrope': true,
+                    'Ubuntu': true,
+                    'Figtree': true,
+                    'Fira Sans': true,
+                    'Fira Code': true,
+                    'Fira Mono': true,
+                    'Source Code Pro': true,
+                    'IBM Plex Mono': true,
+                    'JetBrains Mono': true,
+                },
+                display: 'swap', // Propriété "font-display" pour optimiser le rendu
+                preload: true,   // Ajoute un préchargement pour des performances optimales
+                subsets: ['latin', 'latin-ext'], // Ajoute les sous-ensembles nécessaires
+            },
+        ],
+    ],
     css: ['~/assets/css/main.css'],
     components: [
         '~/components',
         { path: '~/components/properties', extensions: ['vue'] }
     ]
-})
+});
