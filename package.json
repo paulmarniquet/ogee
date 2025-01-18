@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@nuxt/image": "^1.9.0",
+    "@nuxt/scripts": "0.9.5",
     "@nuxt/ui": "3.0.0-alpha.11",
     "@nuxtjs/google-fonts": "3.2.0",
     "html2canvas-pro": "^1.5.8",

@@ -17,16 +17,14 @@ export default defineNuxtConfig({
         },
     },
     compatibilityDate: '2024-11-01',
-    modules: [
-        '@nuxt/ui',
-        ['@nuxtjs/google-fonts',
-        {
-            download: true,
-            families: {
-                'Inter': '200..700',
-            },
+    modules: ['@nuxt/ui', ['@nuxtjs/google-fonts',
+    {
+        download: true,
+        families: {
+            'Inter': '200..700',
         },
-    ],],
+    },
+], '@nuxt/scripts'],
     css: ['~/assets/css/main.css'],
     components: [
         '~/components',
