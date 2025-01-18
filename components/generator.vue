@@ -31,14 +31,22 @@
 
       <!-- Preview Area -->
       <div class="lg:col-span-2">
-        <div class="bg-white shadow-sm p-6">
+        <div class="bg-white shadow-sm rounded-lg p-6">
           <div
-              class="w-full aspect-[1200/630] rounded-lg overflow-hidden preview-canvas"
-              :style="{
-              background: `linear-gradient(${properties.gradient?.angle}deg, ${properties.gradient?.start}, ${properties.gradient?.end})`
-            }"
-          >
-            <div class="w-full h-full flex flex-col items-center justify-center p-12 text-white">
+              class="w-full aspect-[1200/630] overflow-hidden preview-canvas relative"
+              :style="{background: `linear-gradient(${properties.gradient?.angle}deg, ${properties.gradient?.start}, ${properties.gradient?.end})`}">
+
+            <div
+                v-if="properties.grid?.pattern !== 'none'"
+                class="absolute inset-0 z-0"
+                :style="{
+                  backgroundImage: generateGridPattern({ grid: properties.grid }),
+                  backgroundRepeat: 'repeat',
+                  opacity: properties.grid?.opacity || 1,
+                  filter: properties.grid?.blur ? `blur(${properties.grid.blur}px)` : 'none'}"
+            />
+
+            <div class="w-full h-full flex flex-col items-center justify-center p-12 text-white z-50 relative">
               <p v-if="properties.tag?.text !== undefined"
                  :style="{
                   fontFamily: properties.tag?.fontFamily + ', sans-serif' ?? 'Roboto, sans-serif',
@@ -53,9 +61,7 @@
                   fontFamily: properties.title?.fontFamily + ', sans-serif' ?? 'Roboto, sans-serif',
                   fontWeight: properties.title?.fontWeight,
                   fontSize: properties.title?.fontSize + 'px',
-                  color: properties.title?.color,
-                }"
-              >
+                  color: properties.title?.color}">
                 {{ properties.title?.text }}
               </h1>
               <img v-if="properties.logo" :src="properties.logo" class="mt-8 h-16" alt="Logo"/>
@@ -75,71 +81,20 @@ import PropTag from "@/components/properties/PropTag.vue";
 import PropTitle from "@/components/properties/PropTitle.vue";
 import PropLogo from "@/components/properties/PropLogo.vue";
 import PropGradient from "@/components/properties/PropGradient.vue";
+import PropGrid from "~/components/properties/PropGrid.vue";
+import {templateCategories} from "~/utils/templates.ts";
+import {generateGridPattern} from "~/composables/gridPatterns.ts";
 
 const propertyComponents = {
   tag: PropTag,
   title: PropTitle,
   logo: PropLogo,
   gradient: PropGradient,
+  grid: PropGrid,
 };
 
-const templateCategories = ref([
-  {
-    id: "social-media",
-    name: "Réseaux Sociaux",
-    templates: [
-      {
-        id: 1,
-        name: "Post Instagram",
-        preview: "InstagramPreview",
-        properties: {
-          title: {
-            text: "Beautiful Open Graph Images",
-            fontFamily: "Inter",
-            fontWeight: 500,
-            fontSize: 32,
-            color: "#FFFFFF",
-          },
-          tag: {
-            text: "Marketing",
-            fontFamily: "Inter",
-            fontWeight: 500,
-            fontSize: 16,
-            color: "#FFFFFF",
-          },
-          logo: null,
-          gradient: {
-            start: "#FF0080",
-            end: "#FF8C00",
-            angle: 45,
-          },
-        },
-      },
-      {
-        id: 2,
-        name: "Post Facebook",
-        preview: "FacebookPreview",
-        properties: {
-          title: {
-            text: "Votre texte ici",
-            fontFamily: "Roboto",
-            fontWeight: 500,
-            fontSize: 32,
-            color: "#FFFFFF",
-          },
-          gradient: {
-            start: "#FF0080",
-            end: "#FF8C00",
-            angle: 45,
-          },
-        },
-      },
-    ],
-  },
-]);
-
 const templates = ref(
-    templateCategories.value.flatMap((category) => category.templates)
+    templateCategories.flatMap((category) => category.templates)
 );
 
 const selectedTemplate = ref(templates.value[0]);
