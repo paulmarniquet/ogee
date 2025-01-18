@@ -43,6 +43,11 @@
                 WebkitMaskImage: `radial-gradient(ellipse at center, rgba(0,0,0,1) 0%, rgba(0,0,0,1) ${blurStart}%, rgba(0,0,0,0) ${blurEnd}%)`}">
             </div>
 
+            <div
+                class="absolute inset-0 z-10"
+                :style="{backgroundImage: `url(https://grainy-gradients.vercel.app/noise.svg)`, opacity: properties.noise}">
+            </div>
+
             <div class="w-full h-full flex flex-col items-center justify-center p-12 text-white z-50 relative">
               <p v-if="properties.tag?.text !== undefined"
                  :style="{
@@ -79,8 +84,8 @@ import PropTitle from "@/components/properties/PropTitle.vue";
 import PropLogo from "@/components/properties/PropLogo.vue";
 import PropGradient from "@/components/properties/PropGradient.vue";
 import PropGrid from "~/components/properties/PropGrid.vue";
+import PropNoise from "~/components/properties/PropNoise.vue";
 import {templateCategories} from "~/utils/templates.ts";
-import {generateGridPattern} from "~/composables/gridPatterns.ts";
 import {computed} from "vue";
 
 const propertyComponents = {
@@ -89,17 +94,19 @@ const propertyComponents = {
   logo: PropLogo,
   gradient: PropGradient,
   grid: PropGrid,
+  noise: PropNoise,
 };
 
 const blurStart = computed(() => {
   const blurValue = properties.value.grid?.blur || 0;
-  return Math.min(blurValue * 8, 40); // Réduisez le facteur pour contrôler la largeur de l'ellipse
+  return Math.min(blurValue * 8, 40);
 });
 
 const blurEnd = computed(() => {
   const blurValue = properties.value.grid?.blur || 0;
-  return Math.min(blurValue * 15, 100); // Ajustez pour allonger l'ellipse
+  return Math.min(blurValue * 15, 100);
 });
+
 const templates = ref(
     templateCategories.flatMap((category) => category.templates)
 );

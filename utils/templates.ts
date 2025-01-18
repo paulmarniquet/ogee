@@ -34,6 +34,7 @@ export const templateCategories = [
                         opacity: 0.2,
                         blur: 4,
                     },
+                    noise: 0.6,
                 },
             },
             {
@@ -59,6 +60,7 @@ export const templateCategories = [
                         opacity: 1,
                         blur: 0,
                     },
+                    noise: 0.6,
                 },
             },
         ],

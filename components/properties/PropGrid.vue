@@ -29,7 +29,7 @@ const updateGrid = (key: string, value: any) => {
               :key="pattern"
               @click="updateGrid('pattern', pattern)"
               :class="[
-                  'px-2 py-1 rounded border flex items-center justify-center cursor-pointer text-sm gap-2',
+                  'px-2 py-1 rounded border flex items-center justify-center cursor-pointer text-sm gap-2 hover:bg-gray-100 transition duration-300 ease-in-out',
                   grid.pattern === pattern ? 'border-primary-600' : 'border-gray-300',
                 ]"
           >
