@@ -13,7 +13,7 @@ export const templateCategories = [
                         fontFamily: "Inter",
                         fontWeight: 800,
                         fontSize: 32,
-                        color: "black",
+                        color: "#FFFFFF",
                     },
                     tag: {
                         text: "Marketing",
@@ -24,15 +24,15 @@ export const templateCategories = [
                     },
                     logo: null,
                     gradient: {
-                        start: "#FF0080",
-                        end: "#FF8C00",
+                        start: "#434343",
+                        end: "black",
                         angle: 45,
                     },
                     grid: {
                         pattern: 'dots',
                         color: 'white',
-                        opacity: 0.5,
-                        blur: 30,
+                        opacity: 0.2,
+                        blur: 4,
                     },
                 },
             },

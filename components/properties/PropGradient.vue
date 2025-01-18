@@ -36,7 +36,8 @@ const activeTab = ref(items.value[0].key);
 
   <!-- Background Options -->
   <div>
-    <label class="block text-sm font-medium text-gray-700 mb-4">Background</label>
+    <label class="block font-bold text-gray-700 mb-2 mt-6">Background</label>
+    <h3 class="text-sm text-gray-500 mb-4">Select a background color or gradient</h3>
 
     <UTabs
         color="neutral"

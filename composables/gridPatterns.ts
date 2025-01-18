@@ -3,7 +3,7 @@ export function generateGridPattern({grid}: {
 }) {
     if (!grid || !grid.pattern || grid.pattern === 'none') return '';
 
-    const size = 30; // Increased size for better visibility
+    const size = 30;
     const sizeCircle = 12;
     const {pattern = 'grid', color = '#ffffff', opacity = 1} = grid;
 

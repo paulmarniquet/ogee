@@ -37,9 +37,10 @@
               :style="{background: `linear-gradient(${properties.gradient?.angle}deg, ${properties.gradient?.start}, ${properties.gradient?.end})`}">
 
             <div
-                v-if="properties.grid?.pattern !== 'none'"
                 class="absolute inset-0 z-0"
-                :style="{backgroundImage: generateGridPattern({grid: {...properties.grid,}}), backgroundRepeat: 'repeat'}">
+                :style="{backgroundImage: generateGridPattern({grid: {...properties.grid}}), backgroundRepeat: 'repeat',
+                maskImage: `radial-gradient(ellipse at center, rgba(0,0,0,1) 0%, rgba(0,0,0,1) ${blurStart}%, rgba(0,0,0,0) ${blurEnd}%)`,
+                WebkitMaskImage: `radial-gradient(ellipse at center, rgba(0,0,0,1) 0%, rgba(0,0,0,1) ${blurStart}%, rgba(0,0,0,0) ${blurEnd}%)`}">
             </div>
 
             <div class="w-full h-full flex flex-col items-center justify-center p-12 text-white z-50 relative">
@@ -80,6 +81,7 @@ import PropGradient from "@/components/properties/PropGradient.vue";
 import PropGrid from "~/components/properties/PropGrid.vue";
 import {templateCategories} from "~/utils/templates.ts";
 import {generateGridPattern} from "~/composables/gridPatterns.ts";
+import {computed} from "vue";
 
 const propertyComponents = {
   tag: PropTag,
@@ -89,6 +91,15 @@ const propertyComponents = {
   grid: PropGrid,
 };
 
+const blurStart = computed(() => {
+  const blurValue = properties.value.grid?.blur || 0;
+  return Math.min(blurValue * 8, 40); // Réduisez le facteur pour contrôler la largeur de l'ellipse
+});
+
+const blurEnd = computed(() => {
+  const blurValue = properties.value.grid?.blur || 0;
+  return Math.min(blurValue * 15, 100); // Ajustez pour allonger l'ellipse
+});
 const templates = ref(
     templateCategories.flatMap((category) => category.templates)
 );
