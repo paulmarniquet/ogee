@@ -1,6 +1,4 @@
-<script setup lang="ts">
-</script>
-
+<script defer data-domain="ogeez.paulmarniquet.fr" src="https://plausible.paulmarniquet.fr/js/script.js"></script>
 
 <template>
   <UApp>
