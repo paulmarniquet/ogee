@@ -31,7 +31,7 @@ const updategrid = (key: string, value: any) => {
       <div>
         <div class="flex space-x-2 mb-4">
           <button
-              v-for="pattern in ['none', 'grid', 'graph', 'dots']"
+              v-for="pattern in ['none', 'grid', 'dots']"
               :key="pattern"
               @click="updategrid('pattern', pattern)"
               :class="[

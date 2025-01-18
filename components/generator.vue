@@ -39,12 +39,8 @@
             <div
                 v-if="properties.grid?.pattern !== 'none'"
                 class="absolute inset-0 z-0"
-                :style="{
-                  backgroundImage: generateGridPattern({ grid: properties.grid }),
-                  backgroundRepeat: 'repeat',
-                  opacity: properties.grid?.opacity || 1,
-                  filter: properties.grid?.blur ? `blur(${properties.grid.blur}px)` : 'none'}"
-            />
+                :style="{backgroundImage: generateGridPattern({grid: {...properties.grid,}}), backgroundRepeat: 'repeat'}">
+            </div>
 
             <div class="w-full h-full flex flex-col items-center justify-center p-12 text-white z-50 relative">
               <p v-if="properties.tag?.text !== undefined"

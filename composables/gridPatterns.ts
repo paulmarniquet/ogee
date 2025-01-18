@@ -3,19 +3,19 @@ export function generateGridPattern({grid}: {
 }) {
     if (!grid || !grid.pattern || grid.pattern === 'none') return '';
 
-    const size = 30;
-    const {pattern = 'dots', color = '#000000', opacity = 1} = grid;
+    const size = 30; // Increased size for better visibility
+    const sizeCircle = 12;
+    const {pattern = 'grid', color = '#ffffff', opacity = 1} = grid;
 
     const svgTemplates: Record<string, string> = {
         grid: `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}">
-      <rect width="${size}" height="${size}" fill="none" stroke="${color}" stroke-opacity="${opacity}" />
-    </svg>`,
-        graph: `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}">
-      <circle cx="${size / 2}" cy="${size / 2}" r="2" fill="${color}" fill-opacity="${opacity}" />
-    </svg>`,
-        dots: `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}">
-      <circle cx="5" cy="5" r="2" fill="${color}" fill-opacity="${opacity}" />
-    </svg>`,
+            <path d="M ${size} 0 L 0 0 0 ${size}" fill="none" stroke="${color}" stroke-opacity="${opacity}" stroke-width="0.5" />
+        </svg>`,
+        dots: `<svg xmlns="http://www.w3.org/2000/svg" width="${sizeCircle}" height="${sizeCircle}">
+            <circle cx="2" cy="2" r="1.75" fill="${color}" fill-opacity="${opacity}" />
+            <circle cx="${sizeCircle / 2 + 2}" cy="${sizeCircle / 2 + 2}" r="1.75" fill="${color}" fill-opacity="${opacity}" />
+            <circle cx="${sizeCircle + 2}" cy="2" r="1.75" fill="${color}" fill-opacity="${opacity}" />
+        </svg>`
     };
 
     const svg = svgTemplates[pattern];

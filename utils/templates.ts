@@ -29,10 +29,10 @@ export const templateCategories = [
                         angle: 45,
                     },
                     grid: {
-                        pattern: 'none',
+                        pattern: 'dots',
                         color: 'white',
-                        opacity: 1,
-                        blur: 0.2,
+                        opacity: 0.5,
+                        blur: 30,
                     },
                 },
             },
