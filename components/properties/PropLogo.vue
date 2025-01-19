@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const properties = defineProps({
+const props = defineProps({
   logo: {
     type: String,
     required: false,

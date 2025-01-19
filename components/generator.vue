@@ -43,9 +43,11 @@
                 WebkitMaskImage: `radial-gradient(ellipse at center, rgba(0,0,0,1) 0%, rgba(0,0,0,1) ${blurStart}%, rgba(0,0,0,0) ${blurEnd}%)`}">
             </div>
 
-            <div
-                class="absolute inset-0 z-10"
-                :style="{backgroundImage: `url(https://grainy-gradients.vercel.app/noise.svg)`, opacity: properties.noise}">
+            <div class="absolute inset-0 z-10 noise-container">
+              <img
+                  src="@/assets/noise.svg"
+                  class="w-full h-full object-cover noise-image"
+                  :style="{opacity: properties.noise, imageRendering: 'high-quality',transform: 'scale(1.01)'}" alt="noise texture"/>
             </div>
 
             <div class="w-full h-full flex flex-col items-center justify-center p-12 text-white z-50 relative">
@@ -78,7 +80,6 @@
 </template>
 
 <script setup>
-import {ref, watch} from "vue";
 import PropTag from "@/components/properties/PropTag.vue";
 import PropTitle from "@/components/properties/PropTitle.vue";
 import PropLogo from "@/components/properties/PropLogo.vue";
@@ -86,7 +87,6 @@ import PropGradient from "@/components/properties/PropGradient.vue";
 import PropGrid from "~/components/properties/PropGrid.vue";
 import PropNoise from "~/components/properties/PropNoise.vue";
 import {templateCategories} from "~/utils/templates.ts";
-import {computed} from "vue";
 
 const propertyComponents = {
   tag: PropTag,
@@ -124,4 +124,5 @@ watch(selectedTemplate, (newTemplate) => {
     properties.value = {...newTemplate.properties};
   }
 });
+
 </script>

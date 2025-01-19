@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import {ref, defineProps, defineEmits} from 'vue';
 
 const props = defineProps({
   grid: {
