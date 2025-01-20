@@ -5,7 +5,7 @@ export const templateCategories = [
         templates: [
             {
                 id: 1,
-                name: "Marketing",
+                name: "marketing",
                 preview: "marketing",
                 properties: {
                     title: {
@@ -39,7 +39,7 @@ export const templateCategories = [
             },
             {
                 id: 2,
-                name: "Open Source",
+                name: "opensource",
                 preview: "opensource",
                 properties: {
                     title: {

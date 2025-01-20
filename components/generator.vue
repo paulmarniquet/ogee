@@ -29,46 +29,17 @@
       <!-- Preview Area -->
       <div class="lg:col-span-2">
         <div class="bg-white shadow-sm rounded-lg p-6">
-          <div
-              class="w-full aspect-[1200/630] overflow-hidden preview-canvas relative"
-              :style="{background: `linear-gradient(${properties.gradient?.angle}deg, ${properties.gradient?.start}, ${properties.gradient?.end})`}">
-            <div
-                class="absolute inset-0 z-0"
-                :style="{backgroundImage: generateGridPattern({grid: {...properties.grid}}), backgroundRepeat: 'repeat',
-              mask: `radial-gradient(ellipse at center, rgba(0,0,0,1) 0%, rgba(0,0,0,1) ${blurStart}%, rgba(0,0,0,0) ${blurEnd}%)`}"
-            ></div>
-
-            <div class="absolute inset-0 z-10 noise-container">
-              <img
-                  src="@/assets/noise.svg"
-                  class="w-full h-full object-cover noise-image"
-                  :style="{opacity: properties.noise, imageRendering: 'high-quality', transform: 'scale(1.01)'}"
-                  alt="noise texture"/>
-            </div>
-
-            <div class="w-full h-full flex flex-col items-center justify-center p-12 text-white z-50 relative">
-              <p v-if="properties.tag?.text !== undefined"
-                 :style="{
-                  fontFamily: properties.tag?.fontFamily + ', sans-serif' ?? 'Roboto, sans-serif',
-                  fontWeight: properties.tag?.fontWeight,
-                  fontSize: properties.tag?.fontSize + 'px',
-                  color: properties.tag?.color,
-                }"
-                 class="text-lg mb-4">{{ properties.tag.text }}</p>
-              <h1
-                  class="text-center"
-                  :style="{
-                  fontFamily: properties.title?.fontFamily + ', sans-serif' ?? 'Roboto, sans-serif',
-                  fontWeight: properties.title?.fontWeight,
-                  fontSize: properties.title?.fontSize + 'px',
-                  color: properties.title?.color}">{{ properties.title?.text }}</h1>
-              <img v-if="properties.logo" :src="properties.logo" class="mt-8 h-16" alt="Logo"/>
-            </div>
-          </div>
+          <component
+              :is="templatesComponent[selectedTemplate.name]"
+              :properties="properties"
+              :blurStart="blurStart"
+              :blurEnd="blurEnd"
+              class="w-full aspect-[1200/630]"
+          />
         </div>
-
         <Export/>
       </div>
+
     </div>
   </div>
 </template>
@@ -81,9 +52,10 @@ import PropGradient from "@/components/properties/PropGradient.vue";
 import PropGrid from "~/components/properties/PropGrid.vue";
 import PropNoise from "~/components/properties/PropNoise.vue";
 import {templateCategories} from "~/utils/templates.ts";
-import {generateGridPattern} from "~/composables/gridPatterns.ts";
 import Marketing from "~/components/preview/Marketing.vue";
 import OpenSource from "~/components/preview/OpenSource.vue";
+import MarketingComponent from "~/components/templates/Marketing.vue";
+import OpenSourceComponent from "~/components/templates/OpenSource.vue";
 
 const previewComponents = {
   marketing: Marketing,
@@ -99,15 +71,10 @@ const propertyComponents = {
   noise: PropNoise,
 };
 
-const blurStart = computed(() => {
-  const blurValue = properties.value.grid?.blur || 0;
-  return Math.min(blurValue * 8, 40);
-});
-
-const blurEnd = computed(() => {
-  const blurValue = properties.value.grid?.blur || 0;
-  return Math.min(blurValue * 15, 100);
-});
+const templatesComponent = {
+  marketing: MarketingComponent,
+  opensource: OpenSourceComponent,
+}
 
 const templates = ref(
     templateCategories.flatMap((category) => category.templates)
@@ -121,6 +88,16 @@ const selectTemplate = (template) => {
   selectedTemplate.value = template;
   properties.value = JSON.parse(JSON.stringify(template.properties));
 };
+
+const blurStart = computed(() => {
+  const blurValue = properties.value.grid?.blur || 0;
+  return Math.min(blurValue * 8, 40);
+});
+
+const blurEnd = computed(() => {
+  const blurValue = properties.value.grid?.blur || 0;
+  return Math.min(blurValue * 15, 100);
+});
 
 watch(selectedTemplate, (newTemplate) => {
   if (newTemplate) {
