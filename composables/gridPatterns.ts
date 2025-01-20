@@ -1,5 +1,5 @@
 export function generateGridPattern({grid}: {
-    grid?: { pattern?: string; color?: string; opacity?: number; blur?: number }
+    grid?: { pattern?: string; color?: string; opacity?: number }
 }) {
     if (!grid || !grid.pattern || grid.pattern === 'none') return '';
 

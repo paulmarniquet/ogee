@@ -14,7 +14,7 @@
     "@nuxt/scripts": "0.9.5",
     "@nuxt/ui": "3.0.0-alpha.11",
     "@nuxtjs/google-fonts": "3.2.0",
-    "html2canvas-pro": "^1.5.8",
+    "html-to-image": "^1.11.11",
     "nuxt": "^3.15.1",
     "vue": "latest",
     "vue-router": "latest"

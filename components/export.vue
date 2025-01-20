@@ -1,30 +1,35 @@
 <script setup lang="ts">
-import html2canvas from "html2canvas-pro";
+import {toPng} from 'html-to-image';
 
 const exportImage = async () => {
-  const element: HTMLElement | null = document.querySelector('.preview-canvas');
+  const element = document.querySelector('.preview-canvas');
 
   try {
     if (!element) {
-      throw new Error('Element not found');
+      return console.error('Element not found');
     }
 
-    const canvas = await html2canvas(element, {
-      useCORS: true,
-      scale: 2,
-      backgroundColor: null,
+    const dataUrl = await toPng((element as HTMLElement), {
+      quality: 1.0,
+      pixelRatio: 2,
+      skipAutoScale: true,
+      cacheBust: true,
+      filter: (node) => {
+        return !node.classList?.contains('preview-exclude');
+      },
+      style: {
+        'transform': 'translateZ(0)',
+      },
     });
 
-    // Création du lien pour télécharger l'image
     const link = document.createElement('a');
     link.download = 'ogeez.png';
-    link.href = canvas.toDataURL('image/png');
+    link.href = dataUrl;
     link.click();
   } catch (error) {
     console.error('Error exporting image:', error);
   }
 };
-
 </script>
 
 <template>
@@ -33,10 +38,14 @@ const exportImage = async () => {
     transform translate-x-1/2 hover:scale-105 transition-transform duration-300 ease-in-out flex items-center justify-center space-x-1"
       @click="exportImage"
   >
-    <UIcon name="line-md:downloading-loop" class="text-white w-5 h-5 opacity-80 group-hover:opacity-100 transition-opacity duration-300 ease-in-out" />
+    <UIcon
+        name="line-md:downloading-loop"
+        class="text-white w-5 h-5 opacity-80 group-hover:opacity-100 transition-opacity duration-300 ease-in-out"
+    />
     <span class="text-white">Generate</span>
   </UButton>
 </template>
 
 <style scoped>
+/* Les styles restent inchangés */
 </style>

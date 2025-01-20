@@ -35,19 +35,19 @@
           <div
               class="w-full aspect-[1200/630] overflow-hidden preview-canvas relative"
               :style="{background: `linear-gradient(${properties.gradient?.angle}deg, ${properties.gradient?.start}, ${properties.gradient?.end})`}">
+            <canvas class="mask-canvas absolute inset-0 z-0" style="display: none;"></canvas>
 
             <div
                 class="absolute inset-0 z-0"
                 :style="{backgroundImage: generateGridPattern({grid: {...properties.grid}}), backgroundRepeat: 'repeat',
-                maskImage: `radial-gradient(ellipse at center, rgba(0,0,0,1) 0%, rgba(0,0,0,1) ${blurStart}%, rgba(0,0,0,0) ${blurEnd}%)`,
-                WebkitMaskImage: `radial-gradient(ellipse at center, rgba(0,0,0,1) 0%, rgba(0,0,0,1) ${blurStart}%, rgba(0,0,0,0) ${blurEnd}%)`}">
-            </div>
+              mask: `radial-gradient(ellipse at center, rgba(0,0,0,1) 0%, rgba(0,0,0,1) ${blurStart}%, rgba(0,0,0,0) ${blurEnd}%)`}"
+            ></div>
 
             <div class="absolute inset-0 z-10 noise-container">
               <img
                   src="@/assets/noise.svg"
                   class="w-full h-full object-cover noise-image"
-                  :style="{opacity: properties.noise, imageRendering: 'high-quality',transform: 'scale(1.01)'}" alt="noise texture"/>
+                  :style="{opacity: properties.noise, imageRendering: 'high-quality', transform: 'scale(1.01)'}" alt="noise texture"/>
             </div>
 
             <div class="w-full h-full flex flex-col items-center justify-center p-12 text-white z-50 relative">
@@ -65,9 +65,7 @@
                   fontFamily: properties.title?.fontFamily + ', sans-serif' ?? 'Roboto, sans-serif',
                   fontWeight: properties.title?.fontWeight,
                   fontSize: properties.title?.fontSize + 'px',
-                  color: properties.title?.color}">
-                {{ properties.title?.text }}
-              </h1>
+                  color: properties.title?.color}">{{ properties.title?.text }}</h1>
               <img v-if="properties.logo" :src="properties.logo" class="mt-8 h-16" alt="Logo"/>
             </div>
           </div>
@@ -86,7 +84,8 @@ import PropLogo from "@/components/properties/PropLogo.vue";
 import PropGradient from "@/components/properties/PropGradient.vue";
 import PropGrid from "~/components/properties/PropGrid.vue";
 import PropNoise from "~/components/properties/PropNoise.vue";
-import {templateCategories} from "~/utils/templates.ts";
+import { templateCategories } from "~/utils/templates.ts";
+import {generateGridPattern} from "~/composables/gridPatterns.ts";
 
 const propertyComponents = {
   tag: PropTag,
@@ -112,7 +111,7 @@ const templates = ref(
 );
 
 const selectedTemplate = ref(templates.value[0]);
-const properties = ref({...selectedTemplate.value.properties});
+const properties = ref({ ...selectedTemplate.value.properties });
 
 const selectTemplate = (template) => {
   selectedTemplate.value = template;
@@ -121,8 +120,7 @@ const selectTemplate = (template) => {
 
 watch(selectedTemplate, (newTemplate) => {
   if (newTemplate) {
-    properties.value = {...newTemplate.properties};
+    properties.value = { ...newTemplate.properties };
   }
 });
-
 </script>
