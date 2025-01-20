@@ -71,7 +71,7 @@ export const templateCategories = [
         templates: [
             {
                 id: 3,
-                name: "Bannière publicitaire",
+                name: "opensource",
                 preview: "BannerPreview",
                 properties: {
                     title: {

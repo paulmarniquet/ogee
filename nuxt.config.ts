@@ -1,5 +1,9 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+    components: {
+        global: true,
+        dirs: ['~/components', '~/components/templates', '~/components/properties', "~/components/preview"],
+    },
     ui: {
         colorMode: false
     },
@@ -7,12 +11,15 @@ export default defineNuxtConfig({
         head: {
             title: 'ogeez - Sublimate Your Presence',
             meta: [
-                { name: 'description', content: 'ogeez is an open graph generator that helps you create beautiful images for your social media posts.' },
-                { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-                { name: 'author', content: 'Paul Marniquet' },
+                {
+                    name: 'description',
+                    content: 'ogeez is an open graph generator that helps you create beautiful images for your social media posts.'
+                },
+                {name: 'viewport', content: 'width=device-width, initial-scale=1'},
+                {name: 'author', content: 'Paul Marniquet'},
             ],
             link: [
-                { rel: 'icon', type: 'image/png', href: '/favicon.png' },
+                {rel: 'icon', type: 'image/png', href: '/favicon.png'},
             ],
         },
     },
@@ -51,8 +58,4 @@ export default defineNuxtConfig({
         ],
     ],
     css: ['~/assets/css/main.css'],
-    components: [
-        '~/components',
-        { path: '~/components/properties', extensions: ['vue'] }
-    ]
 });
