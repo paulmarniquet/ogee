@@ -5,8 +5,8 @@ export const templateCategories = [
         templates: [
             {
                 id: 1,
-                name: "Post Instagram",
-                preview: "InstagramPreview",
+                name: "Marketing",
+                preview: "marketing",
                 properties: {
                     title: {
                         text: "Beautiful Open Graph Images",
@@ -39,8 +39,8 @@ export const templateCategories = [
             },
             {
                 id: 2,
-                name: "Post Facebook",
-                preview: "FacebookPreview",
+                name: "Open Source",
+                preview: "opensource",
                 properties: {
                     title: {
                         text: "Votre texte ici",
@@ -65,4 +65,43 @@ export const templateCategories = [
             },
         ],
     },
+    {
+        id: "marketing",
+        name: "Marketing",
+        templates: [
+            {
+                id: 3,
+                name: "Bannière publicitaire",
+                preview: "BannerPreview",
+                properties: {
+                    title: {
+                        text: "Votre titre ici",
+                        fontFamily: "Roboto",
+                        fontWeight: 700,
+                        fontSize: 48,
+                        color: "#FFFFFF",
+                    },
+                    tag: {
+                        text: "Promotion",
+                        fontFamily: "Roboto",
+                        fontWeight: 500,
+                        fontSize: 24,
+                        color: "#FFFFFF",
+                    },
+                    gradient: {
+                        start: "#FF0080",
+                        end: "#FF8C00",
+                        angle: 45,
+                    },
+                    grid: {
+                        pattern: 'grid',
+                        color: '#000000',
+                        opacity: 0.5,
+                        blur: 4,
+                    },
+                    noise: 0.6,
+                },
+            },
+        ],
+    }
 ];

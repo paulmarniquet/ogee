@@ -3,16 +3,13 @@
     <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
       <!-- Template Selection -->
       <div class="lg:col-span-3 flex gap-4 overflow-x-auto p-4 bg-white rounded-lg shadow-sm">
-        <button
-            v-for="template in templates"
-            :key="template.id"
-            @click="selectTemplate(template)"
-            class="min-w-[200px] h-24 border-2 rounded-lg p-2 flex items-center justify-center cursor-pointer hover:bg-gray-100 transition-colors duration-300"
-            :class="selectedTemplate.id === template.id ? 'border-primary-600' : 'border-gray-200'"
-        >
-          <component :is="template.preview" :properties="properties" class="w-full h-full"/>
-        </button>
+        <div v-for="template in templates" :key="template.id" @click="selectTemplate(template)">
+          <component :is="previewComponents[template.preview]"
+                     :class="{ 'border-1 rounded-xl border-gray-200': selectedTemplate.id === template.id }"
+                     :properties="template.properties" :isSelected="selectedTemplate.id === template.id"/>
+        </div>
       </div>
+
 
       <!-- Properties Panel -->
       <div class="bg-white rounded-lg shadow-sm p-6">
@@ -35,8 +32,6 @@
           <div
               class="w-full aspect-[1200/630] overflow-hidden preview-canvas relative"
               :style="{background: `linear-gradient(${properties.gradient?.angle}deg, ${properties.gradient?.start}, ${properties.gradient?.end})`}">
-            <canvas class="mask-canvas absolute inset-0 z-0" style="display: none;"></canvas>
-
             <div
                 class="absolute inset-0 z-0"
                 :style="{backgroundImage: generateGridPattern({grid: {...properties.grid}}), backgroundRepeat: 'repeat',
@@ -47,7 +42,8 @@
               <img
                   src="@/assets/noise.svg"
                   class="w-full h-full object-cover noise-image"
-                  :style="{opacity: properties.noise, imageRendering: 'high-quality', transform: 'scale(1.01)'}" alt="noise texture"/>
+                  :style="{opacity: properties.noise, imageRendering: 'high-quality', transform: 'scale(1.01)'}"
+                  alt="noise texture"/>
             </div>
 
             <div class="w-full h-full flex flex-col items-center justify-center p-12 text-white z-50 relative">
@@ -84,8 +80,15 @@ import PropLogo from "@/components/properties/PropLogo.vue";
 import PropGradient from "@/components/properties/PropGradient.vue";
 import PropGrid from "~/components/properties/PropGrid.vue";
 import PropNoise from "~/components/properties/PropNoise.vue";
-import { templateCategories } from "~/utils/templates.ts";
+import {templateCategories} from "~/utils/templates.ts";
 import {generateGridPattern} from "~/composables/gridPatterns.ts";
+import Marketing from "~/components/preview/Marketing.vue";
+import OpenSource from "~/components/preview/OpenSource.vue";
+
+const previewComponents = {
+  marketing: Marketing,
+  opensource: OpenSource,
+};
 
 const propertyComponents = {
   tag: PropTag,
@@ -111,16 +114,21 @@ const templates = ref(
 );
 
 const selectedTemplate = ref(templates.value[0]);
-const properties = ref({ ...selectedTemplate.value.properties });
+const properties = ref({...selectedTemplate.value.properties});
 
 const selectTemplate = (template) => {
+  localStorage.setItem(template.id, JSON.stringify(template.properties));
   selectedTemplate.value = template;
   properties.value = JSON.parse(JSON.stringify(template.properties));
 };
 
 watch(selectedTemplate, (newTemplate) => {
   if (newTemplate) {
-    properties.value = { ...newTemplate.properties };
+    if (localStorage.getItem(newTemplate.id)) {
+      properties.value = JSON.parse(localStorage.getItem(newTemplate.id));
+    } else {
+      properties.value = {...newTemplate.properties};
+    }
   }
 });
 </script>
