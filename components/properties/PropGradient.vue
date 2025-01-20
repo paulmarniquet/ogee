@@ -6,10 +6,6 @@ const props = defineProps({
     type: Object,
     required: true,
   },
-  gradientColors: {
-    type: Array,
-    required: true,
-  },
 });
 
 const items = ref([

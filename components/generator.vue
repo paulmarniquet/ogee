@@ -57,6 +57,9 @@ import OpenSource from "~/components/preview/OpenSource.vue";
 import MarketingComponent from "~/components/templates/Marketing.vue";
 import OpenSourceComponent from "~/components/templates/OpenSource.vue";
 
+
+/* Dynamic components */
+
 const previewComponents = {
   marketing: Marketing,
   opensource: OpenSource,
@@ -76,6 +79,9 @@ const templatesComponent = {
   opensource: OpenSourceComponent,
 }
 
+
+/* Template handler */
+
 const templates = ref(
     templateCategories.flatMap((category) => category.templates)
 );
@@ -84,10 +90,21 @@ const selectedTemplate = ref(templates.value[0]);
 const properties = ref({...selectedTemplate.value.properties});
 
 const selectTemplate = (template) => {
-  localStorage.setItem(template.id, JSON.stringify(template.properties));
   selectedTemplate.value = template;
   properties.value = JSON.parse(JSON.stringify(template.properties));
 };
+
+watch(selectedTemplate, (newTemplate) => {
+  if (newTemplate) {
+    if (localStorage.getItem(newTemplate.id)) {
+      properties.value = JSON.parse(localStorage.getItem(newTemplate.id));
+    } else {
+      properties.value = {...newTemplate.properties};
+    }
+  }
+});
+
+/* Grid radial mask properties */
 
 const blurStart = computed(() => {
   const blurValue = properties.value.grid?.blur || 0;
@@ -99,13 +116,4 @@ const blurEnd = computed(() => {
   return Math.min(blurValue * 15, 100);
 });
 
-watch(selectedTemplate, (newTemplate) => {
-  if (newTemplate) {
-    if (localStorage.getItem(newTemplate.id)) {
-      properties.value = JSON.parse(localStorage.getItem(newTemplate.id));
-    } else {
-      properties.value = {...newTemplate.properties};
-    }
-  }
-});
 </script>
