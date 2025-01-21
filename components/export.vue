@@ -23,12 +23,6 @@ const exportImage = async () => {
       canvasWidth: props.properties.canvas.width || 1200,
       canvasHeight: props.properties.canvas.height || 630,
       cacheBust: true,
-      filter: (node) => {
-        return !node.classList?.contains('preview-exclude');
-      },
-      style: {
-        'transform': 'translateZ(0)',
-      },
     });
 
     const link = document.createElement('a');

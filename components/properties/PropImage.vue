@@ -1,50 +1,51 @@
 <script setup lang="ts">
 const props = defineProps({
-  logo: {
+  image: {
     type: Object,
     required: true,
     default: null,
   },
 });
-const emit = defineEmits(['update:logo']);
+const emit = defineEmits(['update:image']);
 
-const handleLogoUpload = (event: Event) => {
+const handleImageUpload = (event: Event) => {
   const file = (event.target as HTMLInputElement).files?.[0];
   if (file) {
     const reader = new FileReader();
     reader.onload = (e) => {
-      emit('update:logo', {
+      emit('update:image', {
         src: e.target?.result as string,
-        width: props.logo?.width || 12,
-        height: props.logo?.height || 12
+        width: props.image?.width || 48,
+        height: props.image?.height || 24
       });
     };
     reader.readAsDataURL(file);
   }
 };
 
-// Fonction pour supprimer le logo
-const clearLogo = () => {
-  emit('update:logo', null);
+// Fonction pour supprimer le image
+const clearImage = () => {
+  emit('update:image', null);
 };
 </script>
 
 <template>
   <div>
-    <label class="block text-sm font-medium text-gray-700">Logo</label>
+    <label class="block text-sm font-medium text-gray-700">Image</label>
     <div class="mt-4">
-      <!-- Affichage du logo -->
-      <div v-if="logo?.src" class="flex items-center justify-center gap-4">
+      <!-- Affichage du image -->
+      <div v-if="image?.src" class="flex items-center justify-center gap-4">
         <div class="relative w-max flex items-center justify-center">
           <img
-              :src="logo.src"
-              alt="Uploaded Logo"
-              :class="logo.width && logo.height ? 'w-' + logo.width + ' h-' + logo.height + 'object-cover' : 'w-12 h-12'"
+              :src="image.src"
+              alt="Uploaded Image"
+              class="rounded-2xl"
+              :class="image.width && image.height ? 'w-' + image.width + ' h-' + image.height + 'object-cover' : 'w-12 h-12'"
           />
           <UButton
               variant="link"
               class="text-red-600 text-sm underline cursor-pointer absolute rounded-full bg-white -top-4 -right-4"
-              @click="clearLogo"
+              @click="clearImage"
           >
             <UIcon name="heroicons-outline:trash" class="w-6 h-6 bg-red"/>
           </UButton>
@@ -53,7 +54,7 @@ const clearLogo = () => {
       <div v-else>
         <input
             type="file"
-            @change="handleLogoUpload"
+            @change="handleImageUpload"
             accept="image/*"
             class="block w-full text-sm text-gray-500 file:cursor-pointer file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-1 file:border-gray-300 file:font-semibold file:bg-primary-50 file:text-primary-700 hover:file:bg-primary-100"
         />

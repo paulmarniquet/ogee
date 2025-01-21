@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { generateGridPattern } from "~/composables/gridPatterns";
+import {generateGridPattern} from "~/composables/gridPatterns";
 
 const props = defineProps({
   properties: {
@@ -13,15 +13,9 @@ const props = defineProps({
   blurEnd: {
     type: Number,
     required: true,
-  }
+  },
 });
 
-const canvas = ref({
-  width: props.properties.canvas?.width,
-  height: props.properties.canvas?.height,
-});
-
-const aspectRatio = computed(() => canvas.value.width / canvas.value.height);
 </script>
 
 <template>
@@ -30,7 +24,7 @@ const aspectRatio = computed(() => canvas.value.width / canvas.value.height);
         class="w-full overflow-hidden preview-canvas relative"
         :style="{
         background: `linear-gradient(${properties.gradient?.angle}deg, ${properties.gradient?.start}, ${properties.gradient?.end})`,
-        aspectRatio: aspectRatio
+        aspectRatio: properties.canvas?.width / properties.canvas?.height
       }"
     >
 
@@ -45,7 +39,7 @@ const aspectRatio = computed(() => canvas.value.width / canvas.value.height);
             src="@/assets/noise.svg"
             class="w-full h-full object-cover noise-image"
             :style="{opacity: properties.noise, imageRendering: 'high-quality', transform: 'scale(1.01)'}"
-            alt="noise texture"/>
+            alt="Noise"/>
       </div>
 
       <div class="w-full h-full flex flex-col items-center justify-center p-12 text-white z-50 relative">
@@ -57,6 +51,16 @@ const aspectRatio = computed(() => canvas.value.width / canvas.value.height);
                   color: properties.tag?.color,
                 }"
            class="text-lg mb-4">{{ properties.tag.text }}</p>
+
+        <p v-if="properties.description?.text !== undefined"
+           :style="{
+                  fontFamily: properties.description?.fontFamily + ', sans-serif' ?? 'Roboto, sans-serif',
+                  fontWeight: properties.description?.fontWeight,
+                  fontSize: properties.description?.fontSize + 'px',
+                  color: properties.description?.color,
+                }"
+           class="text-lg mb-4">{{ properties.description.text }}</p>
+
         <h1
             class="text-center"
             :style="{

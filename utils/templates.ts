@@ -1,7 +1,7 @@
 export const templateCategories = [
     {
-        id: "social-media",
-        name: "Réseaux Sociaux",
+        id: "opengraph",
+        name: "Open Graph",
         templates: [
             {
                 id: 1,
@@ -9,29 +9,38 @@ export const templateCategories = [
                 preview: "marketing",
                 properties: {
                     title: {
-                        text: "Beautiful Open Graph Images",
+                        text: "Generate Beautiful Open Graph Images",
                         fontFamily: "Inter",
-                        fontWeight: 800,
-                        fontSize: 32,
+                        fontWeight: 700,
+                        fontSize: 36,
                         color: "#FFFFFF",
                     },
                     tag: {
                         text: "Marketing",
                         fontFamily: "Inter",
                         fontWeight: 500,
-                        fontSize: 16,
+                        fontSize: 12,
                         color: "#FFFFFF",
                     },
-                    logo: null,
+                    logo: {
+                        src: "logo.png",
+                        width: 12,
+                        height: 12
+                    },
+                    image: {
+                        src: "/opengraph/marketing.png",
+                        width: 24,
+                        height: 24,
+                    },
                     gradient: {
                         start: "#434343",
                         end: "black",
                         angle: 45,
                     },
                     grid: {
-                        pattern: 'dots',
+                        pattern: 'grid',
                         color: 'white',
-                        opacity: 0.2,
+                        opacity: 0.5,
                         blur: 4,
                     },
                     noise: 0.6,
@@ -53,6 +62,13 @@ export const templateCategories = [
                         fontSize: 32,
                         color: "#FFFFFF",
                     },
+                    description: {
+                        text: "December 2025",
+                        fontFamily: "Inter",
+                        fontWeight: 500,
+                        fontSize: 16,
+                        color: "#FFFFFF",
+                    },
                     gradient: {
                         start: "#FF0080",
                         end: "#FF8C00",
@@ -66,7 +82,7 @@ export const templateCategories = [
                     },
                     noise: 0.6,
                     canvas: {
-                        width: 1900,
+                        width: 900,
                         height: 400,
                     }
                 },
@@ -74,12 +90,12 @@ export const templateCategories = [
         ],
     },
     {
-        id: "marketing",
-        name: "Marketing",
+        id: "reseaux",
+        name: "Réseaux sociaux",
         templates: [
             {
                 id: 3,
-                name: "opensource",
+                name: "Banner",
                 preview: "BannerPreview",
                 properties: {
                     title: {

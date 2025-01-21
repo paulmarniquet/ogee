@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { generateGridPattern } from "~/composables/gridPatterns";
+import {generateGridPattern} from "~/composables/gridPatterns";
 
 const props = defineProps({
   properties: {
@@ -15,22 +15,15 @@ const props = defineProps({
     required: true,
   }
 });
-
-const canvas = ref({
-  width: props.properties.canvas?.width || 1200,
-  height: props.properties.canvas?.height || 630,
-});
-
-const aspectRatio = computed(() => canvas.value.width / canvas.value.height);
 </script>
 
 <template>
-  <div class="bg-white shadow-sm rounded-lg p-6">
+  <div class="bg-white shadow-sm rounded-lg">
     <div
         class="w-full overflow-hidden preview-canvas relative"
         :style="{
         background: `linear-gradient(${properties.gradient?.angle}deg, ${properties.gradient?.start}, ${properties.gradient?.end})`,
-        aspectRatio: aspectRatio
+        aspectRatio: properties.canvas?.width / properties.canvas?.height
       }"
     >
       <div
@@ -55,37 +48,60 @@ const aspectRatio = computed(() => canvas.value.width / canvas.value.height);
         />
       </div>
 
-      <div class="w-full h-full flex flex-col items-center justify-center p-12 text-white z-50 relative">
-        <p
-            v-if="properties.tag?.text !== undefined"
-            :style="{
+      <div class="w-full h-full flex relative">
+
+        <div class="w-[55%] flex flex-col items-start justify-start p-6 text-white z-50 relative">
+
+          <div v-if="properties.logo?.src">
+            <img
+                :src="properties.logo?.src"
+                class="mb-12"
+                :class="properties.logo?.width && properties.logo?.height ? 'w-' + properties.logo.width + ' h-' + properties.logo.height : 'w-12 h-12'"
+                alt="Logo"
+            />
+          </div>
+          <div v-else class="mb-24"/>
+
+          <p
+              v-if="properties.tag?.text !== undefined"
+              :style="{
             fontFamily: (properties.tag?.fontFamily || 'Roboto') + ', sans-serif',
             fontWeight: properties.tag?.fontWeight,
             fontSize: properties.tag?.fontSize + 'px',
-            color: properties.tag?.color,
+            color: properties.tag?.color
           }"
-            class="text-lg mb-4"
-        >
-          {{ properties.tag.text }}
-        </p>
-        <h1
-            class="text-center"
-            :style="{
+              class="text-lg mb-4 border rounded-full p-0.5 px-2.5 tracking-wider"
+              :class="props.tag?.color"
+          >
+            {{ properties.tag.text }}
+          </p>
+          <h1
+              :style="{
             fontFamily: (properties.title?.fontFamily || 'Roboto') + ', sans-serif',
             fontWeight: properties.title?.fontWeight,
             fontSize: properties.title?.fontSize + 'px',
-            color: properties.title?.color
+            color: properties.title?.color,
+            lineHeight: 1.3
           }"
+          >
+            {{ properties.title?.text }}
+          </h1>
+        </div>
+
+
+        <div v-if="properties.image && properties.image.src"
+             class="w-[45%] h-full flex z-50 relative"
         >
-          {{ properties.title?.text }}
-        </h1>
-        <img
-            v-if="properties.logo"
-            :src="properties.logo"
-            class="mt-8 h-16"
-            alt="Logo"
-        />
+          <div class="absolute top-16 left-0 w-full h-full">
+          <img
+              :src="properties.image?.src"
+              class="w-full h-full object-cover object-left"
+              alt="Image"
+          />
+          </div>
+        </div>
       </div>
+
     </div>
   </div>
 </template>
