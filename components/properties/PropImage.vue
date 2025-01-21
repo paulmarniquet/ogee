@@ -36,19 +36,24 @@ const clearImage = () => {
       <!-- Affichage du image -->
       <div v-if="image?.src" class="flex items-center justify-center gap-4">
         <div class="relative w-max flex items-center justify-center">
-          <img
-              :src="image.src"
-              alt="Uploaded Image"
-              class="rounded-2xl"
-              :class="image.width && image.height ? 'w-' + image.width + ' h-' + image.height + 'object-cover' : 'w-12 h-12'"
-          />
-          <UButton
-              variant="link"
-              class="text-red-600 text-sm underline cursor-pointer absolute rounded-full bg-white -top-4 -right-4"
-              @click="clearImage"
-          >
-            <UIcon name="heroicons-outline:trash" class="w-6 h-6 bg-red"/>
-          </UButton>
+          <UPopover mode="hover">
+            <img
+                :src="image.src"
+                alt="Uploaded Logo"
+                class='object-cover w-36 rounded-xl'
+            />
+            <template #content>
+              <div class="flex items-center justify-between">
+                <UButton
+                    class="text-red-600 text-sm cursor-pointer bg-white hover:bg-red-50"
+                    @click="clearImage">
+                  <UIcon class="border-1 rounded-full" name="line-md:remove" />
+                  Clear
+                </UButton>
+              </div>
+            </template>
+          </UPopover>
+
         </div>
       </div>
       <div v-else>

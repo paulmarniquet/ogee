@@ -33,21 +33,26 @@ const clearLogo = () => {
   <div>
     <label class="block text-sm font-medium text-gray-700">Logo</label>
     <div class="mt-4">
-      <!-- Affichage du logo -->
-      <div v-if="logo?.src" class="flex items-center justify-center gap-4">
+
+      <div class="flex items-center justify-center gap-4" v-if="logo?.src">
         <div class="relative w-max flex items-center justify-center">
-          <img
-              :src="logo.src"
-              alt="Uploaded Logo"
-              :class="logo.width && logo.height ? 'w-' + logo.width + ' h-' + logo.height + 'object-cover' : 'w-12 h-12'"
-          />
-          <UButton
-              variant="link"
-              class="text-red-600 text-sm underline cursor-pointer absolute rounded-full bg-white -top-4 -right-4"
-              @click="clearLogo"
-          >
-            <UIcon name="heroicons-outline:trash" class="w-6 h-6 bg-red"/>
-          </UButton>
+          <UPopover mode="hover">
+            <img
+                :src="logo.src"
+                alt="Uploaded Logo"
+                :class="logo.width && logo.height ? 'w-' + logo.width + ' h-' + logo.height + 'object-cover' : 'w-12 h-12'"
+            />
+            <template #content>
+              <div class="flex items-center justify-between">
+                <UButton
+                    class="text-red-600 text-sm cursor-pointer bg-white hover:bg-red-50"
+                    @click="clearImage">
+                  <UIcon class="border-1 rounded-full" name="line-md:remove" />
+                  Clear
+                </UButton>
+              </div>
+            </template>
+          </UPopover>
         </div>
       </div>
       <div v-else>
