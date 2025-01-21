@@ -1,6 +1,5 @@
 <script setup lang="ts">
-
-import {generateGridPattern} from "~/composables/gridPatterns";
+import { generateGridPattern } from "~/composables/gridPatterns";
 
 const props = defineProps({
   properties: {
@@ -17,13 +16,24 @@ const props = defineProps({
   }
 });
 
+const canvas = ref({
+  width: props.properties.canvas?.width,
+  height: props.properties.canvas?.height,
+});
+
+const aspectRatio = computed(() => canvas.value.width / canvas.value.height);
 </script>
 
 <template>
   <div class="bg-white shadow-sm rounded-lg p-6">
     <div
-        class="w-full aspect-[1200/630] overflow-hidden preview-canvas relative"
-        :style="{background: `linear-gradient(${properties.gradient?.angle}deg, ${properties.gradient?.start}, ${properties.gradient?.end})`}">
+        class="w-full overflow-hidden preview-canvas relative"
+        :style="{
+        background: `linear-gradient(${properties.gradient?.angle}deg, ${properties.gradient?.start}, ${properties.gradient?.end})`,
+        aspectRatio: aspectRatio
+      }"
+    >
+
       <div
           class="absolute inset-0 z-0"
           :style="{backgroundImage: generateGridPattern({grid: {...properties.grid}}), backgroundRepeat: 'repeat',

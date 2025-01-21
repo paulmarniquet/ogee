@@ -35,6 +35,10 @@ export const templateCategories = [
                         blur: 4,
                     },
                     noise: 0.6,
+                    canvas: {
+                        width: 1200,
+                        height: 630,
+                    }
                 },
             },
             {
@@ -61,6 +65,10 @@ export const templateCategories = [
                         blur: 0,
                     },
                     noise: 0.6,
+                    canvas: {
+                        width: 1900,
+                        height: 400,
+                    }
                 },
             },
         ],
@@ -100,6 +108,10 @@ export const templateCategories = [
                         blur: 4,
                     },
                     noise: 0.6,
+                    canvas: {
+                        width: 900,
+                        height: 400,
+                    }
                 },
             },
         ],

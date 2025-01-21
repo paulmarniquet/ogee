@@ -1,6 +1,13 @@
 <script setup lang="ts">
 import {toPng} from 'html-to-image';
 
+const props = defineProps({
+  properties: {
+    type: Object,
+    required: true,
+  },
+});
+
 const exportImage = async () => {
   const element = document.querySelector('.preview-canvas');
 
@@ -11,8 +18,10 @@ const exportImage = async () => {
 
     const dataUrl = await toPng((element as HTMLElement), {
       quality: 1.0,
-      pixelRatio: 2,
+      pixelRatio: 1,
       skipAutoScale: true,
+      canvasWidth: props.properties.canvas.width || 1200,
+      canvasHeight: props.properties.canvas.height || 630,
       cacheBust: true,
       filter: (node) => {
         return !node.classList?.contains('preview-exclude');

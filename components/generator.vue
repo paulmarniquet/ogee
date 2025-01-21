@@ -77,10 +77,9 @@ const blurEnd = computed(() => {
               :properties="properties"
               :blurStart="blurStart"
               :blurEnd="blurEnd"
-
           />
         </div>
-        <Export/>
+        <Export :properties="properties"/>
       </div>
 
     </div>
