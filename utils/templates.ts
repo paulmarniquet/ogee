@@ -56,18 +56,23 @@ export const templateCategories = [
                 preview: "opensource",
                 properties: {
                     title: {
-                        text: "Votre texte ici",
-                        fontFamily: "Roboto",
-                        fontWeight: 500,
-                        fontSize: 32,
-                        color: "#FFFFFF",
-                    },
-                    description: {
-                        text: "December 2025",
+                        text: "Introducting Supabase",
                         fontFamily: "Inter",
-                        fontWeight: 500,
-                        fontSize: 16,
-                        color: "#FFFFFF",
+                        fontWeight: 700,
+                        fontSize: 32,
+                        color: "#f9fafb",
+                    },
+                    tag: {
+                        text: "Open Source",
+                        fontFamily: "Inter",
+                        fontWeight: 400,
+                        fontSize: 12,
+                        color: "#f9fafb",
+                    },
+                    image: {
+                        src: "/opengraph/marketing.png",
+                        width: 24,
+                        height: 24,
                     },
                     gradient: {
                         start: "#FF0080",
@@ -75,15 +80,15 @@ export const templateCategories = [
                         angle: 45,
                     },
                     grid: {
-                        pattern: 'none', // Options: 'none', 'grid', 'graph', 'dots'
-                        color: '#000000',
-                        opacity: 1,
-                        blur: 0,
+                        pattern: 'grid',
+                        color: '#f9fafb',
+                        opacity: 0.5,
+                        blur: 20,
                     },
-                    noise: 0.6,
+                    noise: 0.2,
                     canvas: {
-                        width: 900,
-                        height: 400,
+                        width: 1200,
+                        height: 630,
                     }
                 },
             },

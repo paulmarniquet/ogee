@@ -42,35 +42,61 @@ const props = defineProps({
             alt="Noise"/>
       </div>
 
-      <div class="w-full h-full flex flex-col items-center justify-center p-12 text-white z-50 relative">
-        <p v-if="properties.tag?.text !== undefined"
-           :style="{
-                  fontFamily: properties.tag?.fontFamily + ', sans-serif' ?? 'Roboto, sans-serif',
-                  fontWeight: properties.tag?.fontWeight,
-                  fontSize: properties.tag?.fontSize + 'px',
-                  color: properties.tag?.color,
-                }"
-           class="text-lg mb-4">{{ properties.tag.text }}</p>
+      <!-- Conteneur du contenu -->
+      <div
+          class="z-10 flex flex-col items-center text-center z-[100] relative "
+          :style="{ marginTop: '2rem', rowGap: '0.5rem' }"
+      >
+        <!-- Tag -->
 
-        <p v-if="properties.description?.text !== undefined"
-           :style="{
-                  fontFamily: properties.description?.fontFamily + ', sans-serif' ?? 'Roboto, sans-serif',
-                  fontWeight: properties.description?.fontWeight,
-                  fontSize: properties.description?.fontSize + 'px',
-                  color: properties.description?.color,
-                }"
-           class="text-lg mb-4">{{ properties.description.text }}</p>
-
-        <h1
-            class="text-center"
+        <p
+            v-if="properties.tag?.text !== undefined"
             :style="{
-                  fontFamily: properties.title?.fontFamily + ', sans-serif' ?? 'Roboto, sans-serif',
-                  fontWeight: properties.title?.fontWeight,
-                  fontSize: properties.title?.fontSize + 'px',
-                  color: properties.title?.color}">{{ properties.title?.text }}</h1>
-        <img v-if="properties.logo" :src="properties.logo" class="mt-8 h-16" alt="Logo"/>
+            fontFamily: (properties.tag?.fontFamily || 'Roboto') + ', sans-serif',
+            fontWeight: properties.tag?.fontWeight,
+            fontSize: properties.tag?.fontSize + 'px',
+            color: properties.tag?.color
+          }"
+            class="text-lg border rounded-full p-0.5 px-2.5 tracking-wider"
+            :class="props.tag?.color"
+        >
+          {{ properties.tag.text }}
+        </p>
+
+        <!-- Titre -->
+        <h1
+            v-if="properties.title?.text"
+            class="flex-shrink-0"
+            :style="{
+            fontFamily: properties.title?.fontFamily || 'Roboto, sans-serif',
+            fontWeight: properties.title?.fontWeight,
+            fontSize: properties.title?.fontSize + 'px',
+            color: properties.title?.color,
+            letterSpacing: '-0.025em',
+          }"
+        >
+          {{ properties.title.text }}
+        </h1>
+      </div>
+
+      <!-- Image -->
+      <div
+          v-if="properties.image?.src"
+          class="mt-4 z-[100] relative w-full flex justify-center"
+          :style="{
+          paddingRight: '4rem',
+          paddingLeft: '4rem',
+        }"
+      >
+        <img
+            :src="properties.image.src"
+            class="rounded-lg"
+            alt="Image"
+            :style="{ borderRadius: '0.75rem' }"
+        />
       </div>
     </div>
+
   </div>
 
 </template>
