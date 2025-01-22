@@ -19,7 +19,6 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="bg-white shadow-sm rounded-lg p-6">
     <div
         class="w-full overflow-hidden preview-canvas relative"
         :style="{
@@ -96,8 +95,6 @@ const props = defineProps({
         />
       </div>
     </div>
-
-  </div>
 
 </template>
 

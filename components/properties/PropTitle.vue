@@ -1,4 +1,5 @@
 <template>
+  <div class="my-2">
   <label class="block text-sm font-medium text-gray-700">Title</label>
   <div class="space-y-4">
     <!-- Input for Title Text -->
@@ -22,6 +23,7 @@
           @update:weight="(value) => updateTitleProperty('fontWeight', value)"
       />
     </div>
+  </div>
   </div>
 </template>
 

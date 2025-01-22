@@ -30,7 +30,7 @@ const clearLogo = () => {
 </script>
 
 <template>
-  <div>
+  <div class="my-2">
     <label class="block text-sm font-medium text-gray-700">Logo</label>
     <div class="mt-4">
 

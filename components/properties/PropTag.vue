@@ -1,21 +1,23 @@
 <template>
-  <label class="block text-sm font-medium text-gray-700">Tag</label>
-  <div class="flex rounded-md justify-center items-end">
-    <UInput
-        :value="props.tag.text"
-        @input="handleTagChange"
-        class="mt-1 block text-primary w-full rounded-md border-gray-300"
-    />
-    <FontSettings
-        :font="props.tag.fontFamily"
-        :size="props.tag.fontSize"
-        :color="props.tag.color"
-        :weight="props.tag.fontWeight"
-        @update:font="(value) => updateTagProperty('fontFamily', value)"
-        @update:size="(value) => updateTagProperty('fontSize', value)"
-        @update:color="(value) => updateTagProperty('color', value)"
-        @update:weight="(value) => updateTagProperty('fontWeight', value)"
-    />
+  <div class="my-2">
+    <label class="block text-sm font-medium text-gray-700">Tag</label>
+    <div class="flex rounded-md justify-center items-end">
+      <UInput
+          :value="props.tag.text"
+          @input="handleTagChange"
+          class="mt-1 block text-primary w-full rounded-md border-gray-300"
+      />
+      <FontSettings
+          :font="props.tag.fontFamily"
+          :size="props.tag.fontSize"
+          :color="props.tag.color"
+          :weight="props.tag.fontWeight"
+          @update:font="(value) => updateTagProperty('fontFamily', value)"
+          @update:size="(value) => updateTagProperty('fontSize', value)"
+          @update:color="(value) => updateTagProperty('color', value)"
+          @update:weight="(value) => updateTagProperty('fontWeight', value)"
+      />
+    </div>
   </div>
 </template>
 

@@ -30,7 +30,7 @@ const clearImage = () => {
 </script>
 
 <template>
-  <div>
+  <div class="my-2">
     <label class="block text-sm font-medium text-gray-700">Image</label>
     <div class="mt-4">
       <!-- Affichage du image -->
