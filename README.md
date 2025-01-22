@@ -3,7 +3,7 @@
 
 ### The ultimate Open Graph image generator
 
-[![license](https://img.shields.io/github/license/paulmarniquet/ogeez?color=black)](https://github.com/paulmarniquet/ogeez/blob/main/LICENSE)
+[![license](https://img.shields.io/github/license/paulmarniquet/ogee?color=black)](https://github.com/paulmarniquet/ogee/blob/main/LICENSE)
 
 ---
 
@@ -14,7 +14,7 @@
     - [🗺️ Status & Roadmap](#status--roadmap)
 - [✨ Features](#-features)
     - [🔑 Core Features](#core-features)
-    - [🤔 Why Choose ogeez?](#why-choose-ogeez)
+    - [🤔 Why Choose ogee?](#why-choose-ogee)
 - [🛠️ Tech Stack](#-tech-stack)
 - [💬 Community & Support](#-community--support)
     - [💡 How to Suggest Features](#how-to-suggest-features)
@@ -24,7 +24,7 @@
 
 ## 📋 Overview
 
-> 💡 **ogeez** is a modern, dynamic Open Graph image generator tailored to create eye-catching visuals for social media platforms.
+> 💡 **ogee** is a modern, dynamic Open Graph image generator tailored to create eye-catching visuals for social media platforms.
 
 ### Vision & Goals
 
@@ -72,7 +72,7 @@ OGeez aims to simplify the creation of Open Graph images with customizable templ
 
 ### Why Choose OGeez?
 
-- **User-Friendly**: ogeez provides an intuitive interface for non-technical users while offering advanced capabilities for developers.
+- **User-Friendly**: ogee provides an intuitive interface for non-technical users while offering advanced capabilities for developers.
 - **Highly Customizable**: Adapt templates to fit your branding effortlessly.
 - **API-Driven**: Automate workflows with powerful API integrations.
 - **Free and Open-Source**: Built for the community, by the community.
@@ -91,10 +91,10 @@ OGeez aims to simplify the creation of Open Graph images with customizable templ
 
 ### How to Suggest Features
 
-Submit feature requests via the [GitHub Issues](https://github.com/paulmarniquet/ogeez/issues) page.
+Submit feature requests via the [GitHub Issues](https://github.com/paulmarniquet/ogee/issues) page.
 
 ---
 
 ## 📄 License & Credits
 
-OGeez is licensed under the [MIT License](https://github.com/paulmarniquet/ogeez/blob/main/LICENSE).
+OGeez is licensed under the [MIT License](https://github.com/paulmarniquet/ogee/blob/main/LICENSE).

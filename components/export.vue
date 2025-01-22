@@ -26,7 +26,7 @@ const exportImage = async () => {
     });
 
     const link = document.createElement('a');
-    link.download = 'ogeez.png';
+    link.download = 'ogee.png';
     link.href = dataUrl;
     link.click();
   } catch (error) {

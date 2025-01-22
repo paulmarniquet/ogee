@@ -9,11 +9,11 @@ export default defineNuxtConfig({
     },
     app: {
         head: {
-            title: 'ogeez - Sublimate Your Presence',
+            title: 'ogee - Sublimate Your Presence',
             meta: [
                 {
                     name: 'description',
-                    content: 'ogeez is an open graph generator that helps you create beautiful images for your social media posts.'
+                    content: 'ogee is an open graph generator that helps you create beautiful images for your social media posts.'
                 },
                 {name: 'viewport', content: 'width=device-width, initial-scale=1'},
                 {name: 'author', content: 'Paul Marniquet'},
