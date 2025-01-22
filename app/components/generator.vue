@@ -1,5 +1,6 @@
 <script setup>
-import nuxtStorage from 'nuxt-storage';
+
+import nuxtStorage from "nuxt-storage/nuxt-storage.js";
 
 const selectedCategory = ref(templateCategories[0]);
 const selectedTemplate = ref(selectedCategory.value.templates[0]);
