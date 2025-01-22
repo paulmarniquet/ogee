@@ -1,5 +1,6 @@
 
-![image (2)](https://github.com/user-attachments/assets/8260dbc3-58b0-4fae-92f8-fb047e0d222e)
+![image (4)](https://github.com/user-attachments/assets/ca360360-d893-4dcb-a86c-1dc49c54f6cd)
+
 
 ### The ultimate Open Graph image generator
 
@@ -28,25 +29,13 @@
 
 ### Vision & Goals
 
-OGeez aims to simplify the creation of Open Graph images with customizable templates that cater to different needs:
+ogee aims to simplify the creation of Open Graph images with customizable templates that cater to different needs:
 
 - 🎯 **Simplify** the process of creating Open Graph images.
 - 🎨 **Empower** designers and developers with flexible templates.
 - 🚀 **Automate** image generation through APIs.
 - 📈 **Optimize** for social media performance.
 
-### Status & Roadmap
-
-| 🏗️ Current Status | Active Development |
-|-------------------|---------------------|
-| 📅 Next Release   | v1.0.0 (Q2 2025)   |
-
-#### Upcoming Features
-
-- 🖌️ Advanced template editor with drag-and-drop functionality.
-- 📐 Standardized dimensions for all major social platforms.
-- 🔌 API for automated image generation.
-- 🖼️ Gradient and color customization.
 
 ---
 
@@ -70,7 +59,7 @@ OGeez aims to simplify the creation of Open Graph images with customizable templ
     - Caching for faster rendering.
     - Lightweight and fast image generation engine.
 
-### Why Choose OGeez?
+### Why Choose ogee ?
 
 - **User-Friendly**: ogee provides an intuitive interface for non-technical users while offering advanced capabilities for developers.
 - **Highly Customizable**: Adapt templates to fit your branding effortlessly.
