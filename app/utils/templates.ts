@@ -2,6 +2,7 @@ export const templateCategories = [
     {
         id: "opengraph",
         name: "Open Graph",
+        icon: "lucide:globe",
         templates: [
             {
                 id: 1,
@@ -179,43 +180,116 @@ export const templateCategories = [
         ],
     },
     {
-        id: "reseaux",
-        name: "Réseaux sociaux",
+        id: "twitter",
+        name: "Twitter",
+        icon: "lucide:twitter",
         templates: [
             {
-                id: 3,
-                name: "Banner",
-                preview: "BannerPreview",
+                id: 1,
+                name: "banner",
+                preview: "banner",
                 properties: {
                     title: {
-                        text: "Votre titre ici",
-                        fontFamily: "Roboto",
+                        text: "endpts",
+                        fontFamily: "Inter",
                         fontWeight: 700,
-                        fontSize: 48,
+                        fontSize: 22,
                         color: "#FFFFFF",
                     },
-                    tag: {
-                        text: "Promotion",
-                        fontFamily: "Roboto",
+                    description: {
+                        text: "| Deploy your API in seconds",
+                        fontFamily: "Inter",
                         fontWeight: 500,
-                        fontSize: 24,
+                        fontSize: 20,
                         color: "#FFFFFF",
                     },
                     gradient: {
-                        start: "#FF0080",
-                        end: "#FF8C00",
+                        start: "#434343",
+                        end: "black",
                         angle: 45,
                     },
                     grid: {
-                        pattern: 'grid',
+                        pattern: 'none',
                         color: '#000000',
                         opacity: 0.5,
                         blur: 4,
                     },
-                    noise: 0.6,
+                    noise: 0.2,
                     canvas: {
-                        width: 900,
-                        height: 400,
+                        width: 1500,
+                        height: 500,
+                    }
+                },
+            },
+            {
+                id: 2,
+                name: "presentation",
+                preview: "presentation",
+                properties: {
+                    title: {
+                        text: "Hi, I'm Paul 👋",
+                        fontFamily: "Inter",
+                        fontWeight: 600,
+                        fontSize: 18,
+                        color: "#FFFFFF",
+                    },
+                    description: {
+                        text: "I build useful, everyday tools for developers.",
+                        fontFamily: "Inter",
+                        fontWeight: 500,
+                        fontSize: 16,
+                        color: "#FFFFFF",
+                    },
+                    gradient: {
+                        start: "rgb(17, 24, 39)",
+                        end: "rgb(75, 85, 99)",
+                        angle: 45,
+                    },
+                    grid: {
+                        pattern: 'grid',
+                        color: 'white',
+                        opacity: 0.5,
+                        blur: 4,
+                    },
+                    noise: 0.2,
+                    canvas: {
+                        width: 1500,
+                        height: 500,
+                    }
+                },
+            },
+            {
+                id: 3,
+                name: "product",
+                preview: "product",
+                properties: {
+                    description: {
+                        text: "Organize and track tasks with clarity and speed.",
+                        fontFamily: "Inter",
+                        fontWeight: 500,
+                        fontSize: 18,
+                        color: "#FFFFFF",
+                    },
+                    logo: {
+                        src: "linear.png",
+                        width: 8,
+                        height: 8
+                    },
+                    gradient: {
+                        start: "rgb(233, 213, 255)",
+                        end: "rgb(107, 33, 168)",
+                        angle: 45,
+                    },
+                    grid: {
+                        pattern: 'none',
+                        color: '#000000',
+                        opacity: 0.5,
+                        blur: 4,
+                    },
+                    noise: 0.2,
+                    canvas: {
+                        width: 1500,
+                        height: 500,
                     }
                 },
             },

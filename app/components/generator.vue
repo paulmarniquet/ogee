@@ -1,27 +1,24 @@
 <script setup>
 
-/* Template handler */
-
-const templates = ref(
-    templateCategories.flatMap((category) => category.templates)
-);
-
-const selectedTemplate = ref(templates.value[0]);
+// State management
+const selectedCategory = ref(templateCategories[0]);
+const selectedTemplate = ref(selectedCategory.value.templates[0]);
 const properties = ref({...selectedTemplate.value.properties});
+
+const templates = computed(() => selectedCategory.value.templates);
 
 const selectTemplate = (template) => {
   selectedTemplate.value = template;
   properties.value = reactive({...template.properties});
 };
 
-watch(selectedTemplate, (newTemplate) => {
-  if (newTemplate) {
-    properties.value = {...newTemplate.properties};
-  }
-});
+const selectCategory = (category) => {
+  selectedCategory.value = category;
+  const firstTemplate = category.templates[0];
+  selectTemplate(firstTemplate);
+};
 
-/* Grid radial mask properties */
-
+// Grid radial mask properties
 const blurStart = computed(() => {
   const blurValue = properties.value.grid?.blur || 0;
   return Math.min(blurValue * 8, 40);
@@ -31,23 +28,45 @@ const blurEnd = computed(() => {
   const blurValue = properties.value.grid?.blur || 0;
   return Math.min(blurValue * 15, 100);
 });
-
 </script>
 
 <template>
   <div class="min-h-screen bg-gray-50 p-6">
     <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
+
       <!-- Template Selection -->
-      <div class="lg:col-span-3 flex gap-4 overflow-x-auto p-4 bg-white rounded-lg shadow-sm">
-        <div v-for="template in templates" :key="template.id" @click="selectTemplate(template)">
-          <component
-              v-if="template.name"
-              :is="'preview-' + (template.name).toLowerCase()"
-              :class="{ 'border-1 rounded-xl border-gray-200': selectedTemplate.id === template.id }"
-              :properties="template.properties" :isSelected="selectedTemplate.id === template.id"/>
+      <div class="lg:col-span-3 flex flex-col gap-2 overflow-x-auto p-4 bg-white rounded-lg shadow-sm">
+        <div class="flex flex-row gap-4">
+          <div v-for="category in templateCategories" :key="category.id">
+            <UButton
+                @click="selectCategory(category)"
+                class="px-4 py-2 flex bg-white text-sm font-medium text-gray-700 hover:bg-gray-100 transition duration-300 ease-in-out"
+            >
+              <UIcon
+                  v-if="category.icon"
+                  :name="category.icon"
+              />
+              {{ category.name }}
+            </UButton>
+          </div>
+        </div>
+        <div class="flex flex-row gap-4 overflow-x-auto">
+          <div
+              v-for="template in templates"
+              :key="template.id"
+              @click="selectTemplate(template)"
+              class="cursor-pointer"
+          >
+            <component
+                v-if="template.name"
+                :is="'preview-' + (template.name).toLowerCase()"
+                :class="{ 'border-2 rounded-xl border-gray-200': selectedTemplate.id === template.id }"
+                :properties="template.properties"
+                :isSelected="selectedTemplate.id === template.id"
+            />
+          </div>
         </div>
       </div>
-
 
       <!-- Properties Panel -->
       <div class="bg-white rounded-lg shadow-sm p-6">
