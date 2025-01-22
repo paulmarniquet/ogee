@@ -9,6 +9,16 @@ export const templateCategories = [
                 name: "marketing",
                 preview: "marketing",
                 properties: {
+                    logo: {
+                        src: "logo.png",
+                        width: 12,
+                        height: 12
+                    },
+                    image: {
+                        src: "/opengraph/marketing.png",
+                        width: 24,
+                        height: 24,
+                    },
                     title: {
                         text: "Generate Beautiful Open Graph Images",
                         fontFamily: "Inter",
@@ -22,16 +32,6 @@ export const templateCategories = [
                         fontWeight: 500,
                         fontSize: 12,
                         color: "#FFFFFF",
-                    },
-                    logo: {
-                        src: "logo.png",
-                        width: 12,
-                        height: 12
-                    },
-                    image: {
-                        src: "/opengraph/marketing.png",
-                        width: 24,
-                        height: 24,
                     },
                     gradient: {
                         start: "#434343",
@@ -56,6 +56,11 @@ export const templateCategories = [
                 name: "opensource",
                 preview: "opensource",
                 properties: {
+                    image: {
+                        src: "/opengraph/marketing.png",
+                        width: 24,
+                        height: 24,
+                    },
                     title: {
                         text: "Introducting Supabase",
                         fontFamily: "Inter",
@@ -69,11 +74,6 @@ export const templateCategories = [
                         fontWeight: 400,
                         fontSize: 12,
                         color: "#f9fafb",
-                    },
-                    image: {
-                        src: "/opengraph/marketing.png",
-                        width: 24,
-                        height: 24,
                     },
                     gradient: {
                         start: "#FF0080",
@@ -98,6 +98,11 @@ export const templateCategories = [
                 name: "project",
                 preview: "project",
                 properties: {
+                    logo: {
+                        src: "logo.png",
+                        width: 8,
+                        height: 8
+                    },
                     title: {
                         text: "ogee",
                         fontFamily: "Inter",
@@ -111,11 +116,6 @@ export const templateCategories = [
                         fontWeight: 500,
                         fontSize: 20,
                         color: "black",
-                    },
-                    logo: {
-                        src: "logo.png",
-                        width: 8,
-                        height: 8
                     },
                     gradient: {
                         start: "#f5f7fa ",
@@ -140,6 +140,11 @@ export const templateCategories = [
                 name: "changelog",
                 preview: "changelog",
                 properties: {
+                    logo: {
+                        src: "bun.png",
+                        width: 8,
+                        height: 8
+                    },
                     title: {
                         text: "Changelog #2",
                         fontFamily: "Inter",
@@ -153,11 +158,6 @@ export const templateCategories = [
                         fontWeight: 400,
                         fontSize: 18,
                         color: "black",
-                    },
-                    logo: {
-                        src: "bun.png",
-                        width: 8,
-                        height: 8
                     },
                     gradient: {
                         start: "rgb(252, 227, 138)",
@@ -263,17 +263,17 @@ export const templateCategories = [
                 name: "product",
                 preview: "product",
                 properties: {
+                    logo: {
+                        src: "linear.png",
+                        width: 8,
+                        height: 8
+                    },
                     description: {
                         text: "Organize and track tasks with clarity and speed.",
                         fontFamily: "Inter",
                         fontWeight: 500,
                         fontSize: 18,
                         color: "#FFFFFF",
-                    },
-                    logo: {
-                        src: "linear.png",
-                        width: 8,
-                        height: 8
                     },
                     gradient: {
                         start: "rgb(233, 213, 255)",

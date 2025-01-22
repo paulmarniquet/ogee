@@ -1,15 +1,65 @@
 <script setup>
+import nuxtStorage from 'nuxt-storage';
 
-// State management
 const selectedCategory = ref(templateCategories[0]);
 const selectedTemplate = ref(selectedCategory.value.templates[0]);
 const properties = ref({...selectedTemplate.value.properties});
 
 const templates = computed(() => selectedCategory.value.templates);
 
+const getLocalStorageKey = (template) => `template-${template.name}`;
+
+const loadPropertiesFromLocalStorage = (template) => {
+  const storedProperties = nuxtStorage.localStorage.getData(getLocalStorageKey(template));
+
+  if (storedProperties) {
+    const parsedProperties = JSON.parse(storedProperties);
+
+    const templateProperties = {...template.properties};
+    const prioritizedProperties = {};
+
+    if (templateProperties.logo) {
+      prioritizedProperties.logo = templateProperties.logo;
+    }
+    if (templateProperties.image) {
+      prioritizedProperties.image = templateProperties.image;
+    }
+
+    return {
+      ...prioritizedProperties,
+      ...parsedProperties,
+    };
+  }
+
+  return {
+    ...template.properties,
+  };
+};
+
+
+const savePropertiesToLocalStorage = (template, properties) => {
+  const {logo, image, ...filteredProperties} = properties;  // Filtrer et garder logo et image
+  // Sauvegarder dans le localStorage sans toucher à logo et image
+  nuxtStorage.localStorage.setData(getLocalStorageKey(template), JSON.stringify(filteredProperties));
+};
+
+const resetPropertiesToDefault = (template) => {
+  const storedProperties = loadPropertiesFromLocalStorage(template);
+  // On réinitialise avec logo et image venant du template
+  properties.value = reactive({
+    logo: storedProperties?.logo || template.properties.logo,
+    image: storedProperties?.image || template.properties.image,
+    ...storedProperties // Autres propriétés réinitialisées
+  });
+  savePropertiesToLocalStorage(template, properties.value);
+  selectTemplate(template);
+};
+
+
 const selectTemplate = (template) => {
   selectedTemplate.value = template;
-  properties.value = reactive({...template.properties});
+  const storedProperties = loadPropertiesFromLocalStorage(template);
+  properties.value = reactive(storedProperties || {...template.properties});
 };
 
 const selectCategory = (category) => {
@@ -18,7 +68,15 @@ const selectCategory = (category) => {
   selectTemplate(firstTemplate);
 };
 
-// Grid radial mask properties
+watch(
+    () => properties.value,
+    (newProperties) => {
+      savePropertiesToLocalStorage(selectedTemplate.value, newProperties);
+    },
+    {deep: true}
+);
+
+// Calcul des propriétés liées à la grille (blur)
 const blurStart = computed(() => {
   const blurValue = properties.value.grid?.blur || 0;
   return Math.min(blurValue * 8, 40);
@@ -28,13 +86,15 @@ const blurEnd = computed(() => {
   const blurValue = properties.value.grid?.blur || 0;
   return Math.min(blurValue * 15, 100);
 });
+
+selectTemplate(selectedTemplate.value);
 </script>
+
 
 <template>
   <div class="min-h-screen bg-gray-50 p-6">
     <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
-
-      <!-- Template Selection -->
+      <!-- Sélection de la catégorie et des templates -->
       <div class="lg:col-span-3 flex flex-col gap-2 overflow-x-auto p-4 bg-white rounded-lg shadow-sm">
         <div class="flex flex-row gap-4">
           <div v-for="category in templateCategories" :key="category.id">
@@ -42,10 +102,7 @@ const blurEnd = computed(() => {
                 @click="selectCategory(category)"
                 class="px-4 py-2 flex bg-white text-sm font-medium text-gray-700 hover:bg-gray-100 transition duration-300 ease-in-out"
             >
-              <UIcon
-                  v-if="category.icon"
-                  :name="category.icon"
-              />
+              <UIcon v-if="category.icon" :name="category.icon"/>
               {{ category.name }}
             </UButton>
           </div>
@@ -59,7 +116,7 @@ const blurEnd = computed(() => {
           >
             <component
                 v-if="template.name"
-                :is="'preview-' + (template.name).toLowerCase()"
+                :is="'preview-' + template.name.toLowerCase()"
                 :class="{ 'border-2 rounded-xl border-gray-200': selectedTemplate.id === template.id }"
                 :properties="template.properties"
                 :isSelected="selectedTemplate.id === template.id"
@@ -68,27 +125,61 @@ const blurEnd = computed(() => {
         </div>
       </div>
 
-      <!-- Properties Panel -->
-      <div class="bg-white rounded-lg shadow-sm p-6">
-        <h2 class="text-lg font-semibold mb-2">Template Properties</h2>
-        <h3 class="text-sm text-gray-500 mb-4">Customize the properties of the selected template</h3>
-        <div class="space-y-4">
-          <div v-for="key in Object.keys(properties)" :key="key">
-            <component
-                v-model:[key]="properties[key]"
-                :is="'properties-prop' + key.at(0).toUpperCase() + key.slice(1)"
-                :key="key"
-            />
+      <!-- Panneau des propriétés -->
+      <UContextMenu
+          v-if="selectedTemplate"
+          class="mb-4"
+          :items="[
+                {
+                  label: 'Appearance',
+                  children: [
+                      {
+                        label: 'System',
+                        icon: 'i-lucide-monitor'
+                        },
+                        {
+                        label: 'Light',
+                        icon: 'i-lucide-sun'
+                        },
+                        {
+                          label: 'Dark',
+                          icon: 'i-lucide-moon'
+                        }
+                        ]
+                        },
+              {
+                label: 'Reset all templates',
+                onSelect: () => resetPropertiesToDefault(selectedTemplate),
+              },
+              {
+                label: 'Reset the template',
+                onSelect: () => resetPropertiesToDefault(selectedTemplate),
+              },
+            ]"
+      >
+        <div class="bg-white rounded-lg shadow-sm p-6">
+          <h2 class="text-lg font-semibold mb-2">Template Properties</h2>
+          <h3 class="text-sm text-gray-500 mb-4">
+            Customize the properties of the selected template
+          </h3>
+          <div class="space-y-4">
+            <div v-for="key in Object.keys(properties)" :key="key">
+              <component
+                  v-model:[key]="properties[key]"
+                  :is="'properties-prop' + key.at(0).toUpperCase() + key.slice(1)"
+                  :key="key"
+              />
+            </div>
           </div>
         </div>
-      </div>
+      </UContextMenu>
 
-      <!-- Preview Area -->
+      <!-- Zone d'aperçu -->
       <div class="lg:col-span-2">
         <div class="bg-white shadow-sm rounded-lg p-6">
           <component
               v-if="selectedTemplate && selectedTemplate.name"
-              :is="'templates-' + (selectedTemplate.name).toLowerCase()"
+              :is="'templates-' + selectedTemplate.name.toLowerCase()"
               :properties="properties"
               :blurStart="blurStart"
               :blurEnd="blurEnd"
@@ -97,7 +188,6 @@ const blurEnd = computed(() => {
         </div>
         <Export :properties="properties"/>
       </div>
-
     </div>
   </div>
 </template>
