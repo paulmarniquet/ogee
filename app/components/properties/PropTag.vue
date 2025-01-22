@@ -22,7 +22,6 @@
 </template>
 
 <script setup lang="ts">
-import FontSettings from "~/components/FontSettings.vue";
 
 const props = defineProps({
   tag: {

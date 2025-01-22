@@ -34,26 +34,21 @@ const clearImage = () => {
     <label class="block text-sm font-medium text-gray-700">Image</label>
     <div class="mt-4">
       <!-- Affichage du image -->
+      <!-- Affichage du image -->
       <div v-if="image?.src" class="flex items-center justify-center gap-4">
-        <div class="relative w-max flex items-center justify-center">
-          <UPopover mode="hover">
-            <img
-                :src="image.src"
-                alt="Uploaded Logo"
-                class='object-cover w-36 rounded-xl'
-            />
-            <template #content>
-              <div class="flex items-center justify-between">
-                <UButton
-                    class="text-red-600 text-sm cursor-pointer bg-white hover:bg-red-50"
-                    @click="clearImage">
-                  <UIcon class="border-1 rounded-full" name="line-md:remove" />
-                  Clear
-                </UButton>
-              </div>
-            </template>
-          </UPopover>
-
+        <div class="relative w-max flex items-center justify-center group">
+          <img
+              :src="image.src"
+              alt="Uploaded Image"
+              class="rounded-2xl"
+              :class="image.width && image.height ? 'w-' + image.width + ' h-' + image.height + 'object-cover' : 'w-12 h-12'"
+          />
+          <UButton
+              variant="link"
+              class="text-red-600 p-2 text-sm underline cursor-pointer absolute rounded-full bg-white -top-4 -right-4 opacity-0 group-hover:opacity-100 transition duration-200 ease-in-out"
+              @click="clearImage">
+            <UIcon name="lucide:trash" class="w-4 h-4 bg-red"/>
+          </UButton>
         </div>
       </div>
       <div v-else>

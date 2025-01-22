@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import {fontFamilies, fontWeight} from "~/utils/fonts";
 
 const props = defineProps({
   font: {type: String, required: true},
@@ -17,7 +16,7 @@ const selectedWeight = computed(() => props.weight);
     <UButton
         color="neutral"
         variant="subtle"
-        icon="mingcute:settings-2-line"
+        icon="lucide:chart-no-axes-gantt"
         class="ml-1 max-h-8 opacity-80 hover:opacity-100 transition-opacity duration-300 ease-in-out"
     />
     <template #content>

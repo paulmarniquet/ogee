@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import {generateGridPattern} from "~/composables/gridPatterns";
 
 const props = defineProps({
   properties: {
@@ -35,7 +34,7 @@ const props = defineProps({
 
       <div class="absolute inset-0 z-10 noise-container">
         <img
-            src="@/assets/noise.svg"
+            src="../../assets/noise.svg"
             class="w-full h-full object-cover noise-image"
             :style="{opacity: properties.noise, imageRendering: 'high-quality', transform: 'scale(1.01)'}"
             alt="Noise"/>

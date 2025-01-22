@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import {gradientColors, solidColors} from "~/utils/colors";
 
 const props = defineProps({
   gradient: {
@@ -56,8 +55,8 @@ const activeTab = ref(items.value[0].key);
 
           <label class="block text-sm mt-4 font-medium text-gray-700">Angle</label>
           <div class="flex items-center justify-center gap-4">
-            <USlider :min="0" :max="360" v-model="gradient.angle" class="mt-2"/>
-            <span class="font-semibold">{{ gradient.angle }}°</span>
+            <USlider size="xs" :min="0" :max="360" v-model="gradient.angle" class="mt-2"/>
+            <span class="font-light border-1 border-gray-200 rounded-full px-2">{{ gradient.angle }}°</span>
           </div>
         </div>
 

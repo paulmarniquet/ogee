@@ -41,7 +41,7 @@ const updateGrid = (key: string, value: any) => {
         <UButton
             color="neutral"
             variant="subtle"
-            icon="mingcute:settings-2-line"
+            icon="lucide:chart-no-axes-gantt"
             class="ml-1 max-h-8 opacity-80 hover:opacity-100 transition-opacity duration-300 ease-in-out"
         />
         <template #content>
@@ -51,7 +51,7 @@ const updateGrid = (key: string, value: any) => {
               <div class="mb-4">
                 <label class="block text-sm mt-4 font-medium text-gray-700">Opacity</label>
                 <div class="flex items-center justify-center gap-4">
-                  <USlider
+                  <USlider size="xs"
                       :min="0"
                       :max="0.8"
                       :step="0.1"
@@ -59,14 +59,14 @@ const updateGrid = (key: string, value: any) => {
                       class="mt-2"
                       @input="updateGrid('opacity', grid.opacity)"
                   />
-                  <span class="font-semibold">{{ grid.opacity }}</span>
+                  <span class="font-light border-1 border-gray-200 rounded-full px-2">{{ grid.opacity }}</span>
                 </div>
               </div>
 
               <div class="mb-4">
                 <label class="block text-sm mt-4 font-medium text-gray-700">Blur Radius</label>
                 <div class="flex items-center justify-center gap-4">
-                  <USlider
+                  <USlider size="xs"
                       :min="0"
                       :max="10"
                       :step="1"
@@ -74,7 +74,7 @@ const updateGrid = (key: string, value: any) => {
                       class="mt-2"
                       @input="updateGrid('blur', grid.blur)"
                   />
-                  <span class="font-semibold">{{ grid.blur }}</span>
+                  <span class="font-light border-1 border-gray-200 rounded-full px-2">{{ grid.blur }}</span>
                 </div>
               </div>
 

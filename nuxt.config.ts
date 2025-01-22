@@ -5,7 +5,7 @@ export default defineNuxtConfig({
         dirs: ['~/components', '~/components/templates', '~/components/properties', "~/components/preview"],
     },
     ui: {
-        colorMode: false
+        colorMode: false,
     },
     app: {
         head: {
@@ -24,15 +24,18 @@ export default defineNuxtConfig({
         },
     },
     compatibilityDate: '2024-11-01',
+    future: {
+        compatibilityVersion: 4,
+    },
     modules: [
         '@nuxt/ui',
         '@nuxt/scripts',
         [
             '@nuxtjs/google-fonts',
             {
-                download: true, // Télécharge les polices pour un usage local
-                inject: true,   // Injecte les polices dans le projet
-                overwriting: false, // Évite de surcharger les polices téléchargées
+                download: true,
+                inject: true,
+                overwriting: false,
                 families: {
                     'Inter': true,
                     'Open Sans': true,

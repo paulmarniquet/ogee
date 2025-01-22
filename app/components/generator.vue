@@ -1,5 +1,4 @@
 <script setup>
-import {templateCategories} from "~/utils/templates.ts";
 
 /* Template handler */
 
