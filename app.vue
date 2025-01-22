@@ -1,10 +1,10 @@
 <script setup lang="ts">
 useScriptPlausibleAnalytics({
-  domain: 'ogeez.paulmarniquet.fr',
+  domain: 'ogee.pro',
   scriptInput: {
     src: "https://plausible.paulmarniquet.fr/js/script.js",
     defer: true,
-    'data-domain': 'ogeez.paulmarniquet.fr'
+    'data-domain': 'ogee.pro'
   }
 });
 </script>
