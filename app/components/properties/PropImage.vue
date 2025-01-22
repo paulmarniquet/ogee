@@ -34,14 +34,12 @@ const clearImage = () => {
     <label class="block text-sm font-medium text-gray-700">Image</label>
     <div class="mt-4">
       <!-- Affichage du image -->
-      <!-- Affichage du image -->
       <div v-if="image?.src" class="flex items-center justify-center gap-4">
         <div class="relative w-max flex items-center justify-center group">
           <img
               :src="image.src"
               alt="Uploaded Image"
-              class="rounded-2xl"
-              :class="image.width && image.height ? 'w-' + image.width + ' h-' + image.height + 'object-cover' : 'w-12 h-12'"
+              class="rounded-2xl object-cover w-48 h-24"
           />
           <UButton
               variant="link"

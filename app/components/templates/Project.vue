@@ -18,12 +18,13 @@ const props = defineProps({
 <template>
   <div class="bg-white shadow-sm rounded-lg">
     <div
-        class="w-full overflow-hidden preview-canvas relative"
+        class="w-full h-full overflow-hidden preview-canvas relative flex items-center justify-center"
         :style="{
         background: `linear-gradient(${properties.gradient?.angle}deg, ${properties.gradient?.start}, ${properties.gradient?.end})`,
         aspectRatio: properties.canvas?.width / properties.canvas?.height
       }"
     >
+      <!-- Grid background -->
       <div
           class="absolute inset-0 z-0"
           :style="{
@@ -33,6 +34,7 @@ const props = defineProps({
         }"
       ></div>
 
+      <!-- Noise texture -->
       <div class="absolute inset-0 z-10 noise-container">
         <img
             src="../../assets/noise.svg"
@@ -46,59 +48,41 @@ const props = defineProps({
         />
       </div>
 
-      <div class="w-full h-full flex relative">
+      <!-- Content -->
+      <div class="relative z-20 text-center flex flex-col items-center">
+        <!-- Logo -->
+        <div v-if="properties.logo?.src" class="mb-2">
+          <img
+              :src="properties.logo?.src"
+              class="max-w-22 max-h-16 object-cover"
+              alt="Logo"
+          />
+        </div>
 
-        <div class="w-[55%] flex flex-col items-start justify-start p-6 text-white z-50 relative">
-
-          <div v-if="properties.logo?.src">
-            <img
-                :src="properties.logo?.src"
-                class="mb-12 max-w-22 max-h-12 object-cover"
-                alt="Logo"
-            />
-          </div>
-          <div v-else class="mb-24"/>
-
-          <p
-              v-if="properties.tag?.text !== undefined"
-              :style="{
-            fontFamily: (properties.tag?.fontFamily || 'Roboto') + ', sans-serif',
-            fontWeight: properties.tag?.fontWeight,
-            fontSize: properties.tag?.fontSize + 'px',
-            color: properties.tag?.color
-          }"
-              class="text-lg mb-4 border rounded-full p-0.5 px-2.5 tracking-wider"
-              :class="props.tag?.color"
-          >
-            {{ properties.tag.text }}
-          </p>
-          <h1
-              :style="{
+        <h1
+            :style="{
             fontFamily: (properties.title?.fontFamily || 'Roboto') + ', sans-serif',
             fontWeight: properties.title?.fontWeight,
             fontSize: properties.title?.fontSize + 'px',
             color: properties.title?.color,
             lineHeight: 1.3
+          }">
+          {{ properties.title?.text }}
+        </h1>
+
+        <p
+            v-if="properties.description?.text"
+            :style="{
+            fontFamily: (properties.description?.fontFamily || 'Roboto') + ', sans-serif',
+            fontWeight: properties.description?.fontWeight,
+            fontSize: properties.description?.fontSize + 'px',
+            color: properties.description?.color
           }"
-          >
-            {{ properties.title?.text }}
-          </h1>
-        </div>
-
-
-        <div v-if="properties.image && properties.image.src"
-             class="w-[45%] h-full flex z-50 relative"
+            class="text-sm"
         >
-          <div class="absolute top-16 left-0 w-full h-full">
-          <img
-              :src="properties.image?.src"
-              class="w-full h-full object-cover object-left"
-              alt="Image"
-          />
-          </div>
-        </div>
+          {{ properties.description.text }}
+        </p>
       </div>
-
     </div>
   </div>
 </template>

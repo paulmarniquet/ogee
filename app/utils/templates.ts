@@ -92,6 +92,90 @@ export const templateCategories = [
                     }
                 },
             },
+            {
+                id: 3,
+                name: "project",
+                preview: "project",
+                properties: {
+                    title: {
+                        text: "ogee",
+                        fontFamily: "Inter",
+                        fontWeight: 900,
+                        fontSize: 32,
+                        color: "black",
+                    },
+                    description: {
+                        text: "The open graph project",
+                        fontFamily: "Inter",
+                        fontWeight: 500,
+                        fontSize: 20,
+                        color: "black",
+                    },
+                    logo: {
+                        src: "logo.png",
+                        width: 8,
+                        height: 8
+                    },
+                    gradient: {
+                        start: "#f5f7fa ",
+                        end: "#c3cfe2 ",
+                        angle: 45,
+                    },
+                    grid: {
+                        pattern: 'grid',
+                        color: '#6B7280',
+                        opacity: 0.5,
+                        blur: 4,
+                    },
+                    noise: 0.2,
+                    canvas: {
+                        width: 1200,
+                        height: 630,
+                    }
+                },
+            },
+            {
+                id: 4,
+                name: "changelog",
+                preview: "changelog",
+                properties: {
+                    title: {
+                        text: "Changelog #2",
+                        fontFamily: "Inter",
+                        fontWeight: 800,
+                        fontSize: 20,
+                        color: "black",
+                    },
+                    description: {
+                        text: "January 2025",
+                        fontFamily: "Inter",
+                        fontWeight: 400,
+                        fontSize: 18,
+                        color: "black",
+                    },
+                    logo: {
+                        src: "bun.png",
+                        width: 8,
+                        height: 8
+                    },
+                    gradient: {
+                        start: "rgb(252, 227, 138)",
+                        end: "rgb(252, 227, 138)",
+                        angle: 45,
+                    },
+                    grid: {
+                        pattern: 'none',
+                        color: '#6B7280',
+                        opacity: 0.5,
+                        blur: 4,
+                    },
+                    noise: 0.1,
+                    canvas: {
+                        width: 1200,
+                        height: 630,
+                    }
+                },
+            },
         ],
     },
     {
