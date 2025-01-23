@@ -37,7 +37,6 @@ const clearImage = () => {
       <div v-if="image?.src" class="flex items-center justify-center gap-4">
         <div class="relative w-max flex items-center justify-center group">
           <NuxtImg
-              format="webp"
               :src="image.src"
               alt="Uploaded Image"
               class="object-cover w-48 h-24 border-gray-200 rounded-lg"
