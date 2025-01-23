@@ -67,7 +67,7 @@ const props = defineProps({
             fontSize: properties.tag?.fontSize + 'px',
             color: properties.tag?.color
           }"
-              class="text-lg mb-4 border rounded-full p-0.5 px-2.5 tracking-wider"
+              class="mb-4 border rounded-full p-0.5 px-2.5 tracking-[0.05em]"
               :class="props.tag?.color"
           >
             {{ properties.tag.text }}

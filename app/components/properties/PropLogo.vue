@@ -39,7 +39,7 @@ const clearLogo = () => {
           <img
               :src="logo.src"
               alt="Uploaded Logo"
-              class="max-w-22 max-h-12 object-cover"
+              class="max-w-22 max-h-12 object-cover border-1 border-gray-200 rounded-lg"
           />
           <UButton
               variant="link"

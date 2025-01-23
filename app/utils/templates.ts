@@ -22,15 +22,15 @@ export const templateCategories = [
                     title: {
                         text: "Generate Beautiful Open Graph Images",
                         fontFamily: "Inter",
-                        fontWeight: 700,
-                        fontSize: 36,
+                        fontWeight: 800,
+                        fontSize: 32,
                         color: "#FFFFFF",
                     },
                     tag: {
                         text: "Marketing",
                         fontFamily: "Inter",
-                        fontWeight: 500,
-                        fontSize: 12,
+                        fontWeight: 400,
+                        fontSize: 11,
                         color: "#FFFFFF",
                     },
                     gradient: {
@@ -64,15 +64,15 @@ export const templateCategories = [
                     title: {
                         text: "Introducting Supabase",
                         fontFamily: "Inter",
-                        fontWeight: 700,
-                        fontSize: 32,
+                        fontWeight: 600,
+                        fontSize: 30,
                         color: "#f9fafb",
                     },
                     tag: {
                         text: "Open Source",
                         fontFamily: "Inter",
                         fontWeight: 400,
-                        fontSize: 12,
+                        fontSize: 11,
                         color: "#f9fafb",
                     },
                     gradient: {
@@ -106,15 +106,15 @@ export const templateCategories = [
                     title: {
                         text: "ogee",
                         fontFamily: "Inter",
-                        fontWeight: 900,
-                        fontSize: 32,
+                        fontWeight: 800,
+                        fontSize: 30,
                         color: "black",
                     },
                     description: {
                         text: "The open graph project",
                         fontFamily: "Inter",
-                        fontWeight: 500,
-                        fontSize: 20,
+                        fontWeight: 400,
+                        fontSize: 18,
                         color: "black",
                     },
                     gradient: {
@@ -156,7 +156,7 @@ export const templateCategories = [
                         text: "January 2025",
                         fontFamily: "Inter",
                         fontWeight: 400,
-                        fontSize: 18,
+                        fontSize: 16,
                         color: "black",
                     },
                     gradient: {
@@ -192,15 +192,15 @@ export const templateCategories = [
                     title: {
                         text: "endpts",
                         fontFamily: "Inter",
-                        fontWeight: 700,
-                        fontSize: 22,
+                        fontWeight: 600,
+                        fontSize: 24,
                         color: "#FFFFFF",
                     },
                     description: {
                         text: "| Deploy your API in seconds",
                         fontFamily: "Inter",
-                        fontWeight: 500,
-                        fontSize: 20,
+                        fontWeight: 400,
+                        fontSize: 22,
                         color: "#FFFFFF",
                     },
                     gradient: {
@@ -230,13 +230,13 @@ export const templateCategories = [
                         text: "Hi, I'm Paul 👋",
                         fontFamily: "Inter",
                         fontWeight: 600,
-                        fontSize: 18,
+                        fontSize: 20,
                         color: "#FFFFFF",
                     },
                     description: {
                         text: "I build useful, everyday tools for developers.",
                         fontFamily: "Inter",
-                        fontWeight: 500,
+                        fontWeight: 400,
                         fontSize: 16,
                         color: "#FFFFFF",
                     },
@@ -272,7 +272,7 @@ export const templateCategories = [
                         text: "Organize and track tasks with clarity and speed.",
                         fontFamily: "Inter",
                         fontWeight: 500,
-                        fontSize: 18,
+                        fontSize: 20,
                         color: "#FFFFFF",
                     },
                     gradient: {

@@ -68,6 +68,7 @@ const resetAllPropertiesToDefault = () => {
       resetPropertiesToDefault(template);
     }
   }
+  selectTemplate(selectedTemplate.value);
 };
 
 const selectTemplate = (template) => {
@@ -138,35 +139,34 @@ onMounted(() => {
       <!-- Panneau des propriétés -->
       <UContextMenu
           v-if="selectedTemplate"
-          class="mb-4"
           :items="[
-                {
-                  icon: 'i-lucide-monitor',
-                  label: 'Theme',
-                  children: [
-                        {
-                        label: 'Light',
-                        icon: 'i-lucide-sun'
-                        },
-                        {
-                          label: 'Dark',
-                          icon: 'i-lucide-moon'
-                        }
-                        ]
-                        },
+          {
+            icon: 'i-lucide-monitor',
+            label: 'Theme',
+            children: [
               {
-                label: 'Reset template',
-                icon: 'i-lucide-squircle',
-                onSelect: () => resetPropertiesToDefault(selectedTemplate),
+                label: 'Light',
+                icon: 'i-lucide-sun',
               },
               {
-                label: 'Reset all templates',
-                icon: 'i-lucide-square-x',
-                onSelect: () => resetAllPropertiesToDefault(),
+                label: 'Dark',
+                icon: 'i-lucide-moon',
               },
-            ]"
+            ],
+          },
+          {
+            label: 'Reset template',
+            icon: 'i-lucide-squircle',
+            onSelect: () => resetPropertiesToDefault(selectedTemplate),
+          },
+          {
+            label: 'Reset all templates',
+            icon: 'i-lucide-square-x',
+            onSelect: () => resetAllPropertiesToDefault(),
+          },
+        ]"
       >
-        <div class="bg-white rounded-lg shadow-sm p-6">
+        <div class="!bg-white rounded-lg shadow-sm p-6">
           <h2 class="text-lg font-semibold mb-2">Template Properties</h2>
           <h3 class="text-sm text-gray-500 mb-4">
             Customize the properties of the selected template

@@ -42,8 +42,8 @@ const props = defineProps({
 
       <!-- Conteneur du contenu -->
       <div
-          class="z-10 flex flex-col items-center text-center z-[100] relative "
-          :style="{ marginTop: '2rem', rowGap: '0.5rem' }"
+          class="flex flex-col items-center text-center z-[100] relative "
+          :style="{ marginTop: '2rem', rowGap: '0.1rem' }"
       >
         <!-- Tag -->
 
@@ -55,7 +55,7 @@ const props = defineProps({
             fontSize: properties.tag?.fontSize + 'px',
             color: properties.tag?.color
           }"
-            class="text-lg border rounded-full p-0.5 px-2.5 tracking-wider"
+            class="border rounded-full py-0.5 px-2 tracking-wider"
             :class="props.tag?.color"
         >
           {{ properties.tag.text }}

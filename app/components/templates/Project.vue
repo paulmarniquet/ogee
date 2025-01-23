@@ -51,7 +51,7 @@ const props = defineProps({
       <!-- Content -->
       <div class="relative z-20 text-center flex flex-col items-center">
         <!-- Logo -->
-        <div v-if="properties.logo?.src" class="mb-2">
+        <div v-if="properties.logo?.src" class="mb-0.5">
           <img
               :src="properties.logo?.src"
               class="max-w-22 max-h-16 object-cover"

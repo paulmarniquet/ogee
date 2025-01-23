@@ -39,7 +39,7 @@ const clearImage = () => {
           <img
               :src="image.src"
               alt="Uploaded Image"
-              class="rounded-2xl object-cover w-48 h-24"
+              class="rounded-2xl object-cover w-48 h-24 border-gray-200 rounded-lg"
           />
           <UButton
               variant="link"
