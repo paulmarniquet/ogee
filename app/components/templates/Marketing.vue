@@ -35,8 +35,8 @@ const props = defineProps({
       ></div>
 
       <div class="absolute inset-0 z-10 noise-container">
-        <img
-            src="../../assets/noise.svg"
+        <NuxtImg
+            src="/noise.svg"
             class="w-full h-full object-cover noise-image"
             :style="{
             opacity: properties.noise,
@@ -52,7 +52,7 @@ const props = defineProps({
         <div class="w-[55%] flex flex-col items-start justify-start p-6 text-white z-50 relative">
 
           <div v-if="properties.logo?.src">
-            <img
+            <NuxtImg
                 :src="properties.logo?.src"
                 class="mb-12 max-w-22 max-h-12 object-cover"
                 alt="Logo"
@@ -91,8 +91,8 @@ const props = defineProps({
              class="w-[45%] h-full flex z-50 relative"
         >
           <div class="absolute top-16 left-0 w-full h-full">
-          <img
-              :src="properties.image?.src"
+          <NuxtImg
+              :src="properties.image.src"
               class="w-full h-full object-cover object-left"
               alt="Image"
           />

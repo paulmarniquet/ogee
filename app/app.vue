@@ -13,7 +13,7 @@ useScriptPlausibleAnalytics({
 <template>
   <UApp>
     <NuxtLayout name="default">
-      <Generator/>
+      <Preview/>
     </NuxtLayout>
   </UApp>
 </template>

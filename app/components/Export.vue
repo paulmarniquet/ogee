@@ -16,7 +16,7 @@ const exportImage = async () => {
       return console.error('Element not found');
     }
 
-    const dataUrl = await toPng((element as HTMLElement), {
+    const dataUrl = await toPng((element as any), {
       quality: 1.0,
       pixelRatio: 1,
       skipAutoScale: true,

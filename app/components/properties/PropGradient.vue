@@ -1,7 +1,6 @@
 <script setup lang="ts">
 
 
-
 const props = defineProps({
   gradient: {
     type: Object,
@@ -18,7 +17,7 @@ const emit = defineEmits(['update:gradient']);
 
 const selectGradient = (newGradient: any) => {
   const updatedGradient = {
-    colorStops : newGradient.colorStops,
+    colorStops: newGradient.colorStops,
     angle: newGradient.angle !== undefined ? newGradient.angle : props.gradient.angle,
   };
   emit('update:gradient', updatedGradient);
@@ -46,6 +45,7 @@ const activeTab = ref(items.value[0].key);
                 v-for="(color, index) in gradientColors"
                 :key="index"
                 @click="selectGradient(color)"
+                aria-label="Gradient"
                 class="w-8 h-8 rounded-lg cursor-pointer hover:scale-105
                  transition duration-300 ease-in-out focus:outline-none focus:border-2 focus:border-primary-600
                  focus:hover:scale-100"
@@ -57,7 +57,7 @@ const activeTab = ref(items.value[0].key);
 
           <label class="block text-sm mt-4 font-medium text-gray-700">Angle</label>
           <div class="flex items-center justify-center gap-4">
-            <USlider size="xs" :min="0" :max="360" v-model="gradient.angle" class="mt-2"/>
+            <USlider aria-label="Angle" size="xs" :min="0" :max="360" v-model="gradient.angle" class="mt-2"/>
             <span class="font-light border-1 border-gray-200 rounded-full px-2">{{ gradient.angle }}°</span>
           </div>
         </div>
@@ -65,6 +65,7 @@ const activeTab = ref(items.value[0].key);
         <div v-if="item.key === 'colors'">
           <div class="flex flex-wrap gap-2">
             <UButton
+                aria-label="Color"
                 v-for="(color, index) in solidColors"
                 :key="index"
                 @click="selectGradient({ colorStops: [color, color] })"

@@ -27,6 +27,7 @@ const updateGrid = (key: string, value: any) => {
       <!-- Pattern Section -->
       <div class="flex space-x-2 mb-4 items-center justify-center">
         <button
+            aria-label="Grid Pattern"
             v-for="pattern in grids.map((g : string) => g[0])"
             :key="pattern"
             @click="updateGrid('pattern', pattern)"
@@ -42,6 +43,7 @@ const updateGrid = (key: string, value: any) => {
 
       <UPopover>
         <UButton
+            aria-label="Settings"
             color="neutral"
             variant="subtle"
             icon="lucide:chart-no-axes-gantt"
@@ -54,7 +56,9 @@ const updateGrid = (key: string, value: any) => {
               <div class="mb-4">
                 <label class="block text-sm mt-4 font-medium text-gray-700">Opacity</label>
                 <div class="flex items-center justify-center gap-4">
-                  <USlider size="xs"
+                  <USlider
+                      aria-label="Opacity"
+                      size="xs"
                            :min="0"
                            :max="0.8"
                            :step="0.1"
@@ -69,7 +73,9 @@ const updateGrid = (key: string, value: any) => {
               <div class="mb-4">
                 <label class="block text-sm mt-4 font-medium text-gray-700">Blur Radius</label>
                 <div class="flex items-center justify-center gap-4">
-                  <USlider size="xs"
+                  <USlider
+                      aria-label="Blur Radius"
+                      size="xs"
                            :min="0"
                            :max="10"
                            :step="1"

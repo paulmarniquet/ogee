@@ -2,27 +2,7 @@
 ![image (4)](https://github.com/user-attachments/assets/ca360360-d893-4dcb-a86c-1dc49c54f6cd)
 
 
-### The ultimate Open Graph image generator
-
-[![license](https://img.shields.io/github/license/paulmarniquet/ogee?color=black)](https://github.com/paulmarniquet/ogee/blob/main/LICENSE)
-
 ---
-
-## 📑 Table of Contents
-
-- [📋 Overview](#-overview)
-    - [🎯 Vision & Goals](#vision--goals)
-    - [🗺️ Status & Roadmap](#status--roadmap)
-- [✨ Features](#-features)
-    - [🔑 Core Features](#core-features)
-    - [🤔 Why Choose ogee?](#why-choose-ogee)
-- [🛠️ Tech Stack](#-tech-stack)
-- [💬 Community & Support](#-community--support)
-    - [💡 How to Suggest Features](#how-to-suggest-features)
-- [📄 License & Credits](#license--credits)
-
----
-
 ## 📋 Overview
 
 > 💡 **ogee** is a modern, dynamic Open Graph image generator tailored to create eye-catching visuals for social media platforms.

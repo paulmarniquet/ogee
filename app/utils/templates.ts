@@ -10,12 +10,12 @@ export const templateCategories = [
                 preview: "marketing",
                 properties: {
                     logo: {
-                        src: "logo.png",
+                        src: "/logo.png",
                         width: 12,
                         height: 12
                     },
                     image: {
-                        src: "/opengraph/marketing.png",
+                        src: "/marketing.png",
                         width: 24,
                         height: 24,
                     },
@@ -56,7 +56,7 @@ export const templateCategories = [
                 preview: "opensource",
                 properties: {
                     image: {
-                        src: "/opengraph/marketing.png",
+                        src: "/marketing.png",
                         width: 24,
                         height: 24,
                     },
@@ -97,7 +97,7 @@ export const templateCategories = [
                 preview: "project",
                 properties: {
                     logo: {
-                        src: "logo.png",
+                        src: "/logo.png",
                         width: 8,
                         height: 8
                     },
@@ -138,7 +138,7 @@ export const templateCategories = [
                 preview: "changelog",
                 properties: {
                     logo: {
-                        src: "bun.png",
+                        src: "/bun.png",
                         width: 8,
                         height: 8
                     },
@@ -258,7 +258,7 @@ export const templateCategories = [
                 preview: "product",
                 properties: {
                     logo: {
-                        src: "linear.png",
+                        src: "/linear.png",
                         width: 8,
                         height: 8
                     },

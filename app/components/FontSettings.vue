@@ -15,6 +15,7 @@ const selectedWeight = computed(() => props.weight);
   <UPopover>
     <UButton
         color="neutral"
+        aria-label="Settings"
         variant="subtle"
         icon="lucide:chart-no-axes-gantt"
         class="ml-1 max-h-8 opacity-80 hover:opacity-100 transition-opacity duration-300 ease-in-out"

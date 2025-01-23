@@ -38,8 +38,8 @@ const props = defineProps({
 
       <!-- Noise texture -->
       <div class="absolute inset-0 z-10 noise-container">
-        <img
-            src="../../assets/noise.svg"
+        <NuxtImg
+            src="/noise.svg"
             class="w-full h-full object-cover noise-image"
             :style="{
             opacity: properties.noise,
@@ -54,7 +54,7 @@ const props = defineProps({
       <div class="relative z-20 text-center flex flex-col items-center gap-3">
 
         <div v-if="properties.logo?.src">
-          <img
+          <NuxtImg
               :src="properties.logo?.src"
               class="max-w-10 max-h-12 object-cover"
               alt="Logo"

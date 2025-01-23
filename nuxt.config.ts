@@ -9,6 +9,9 @@ export default defineNuxtConfig({
     },
     app: {
         head: {
+            htmlAttrs: {
+                lang: 'en'
+            },
             title: 'ogee - Sublimate Your Presence',
             meta: [
                 {
@@ -27,9 +30,13 @@ export default defineNuxtConfig({
     future: {
         compatibilityVersion: 4,
     },
+    image: {
+        provider: 'none'
+    },
     modules: [
         '@nuxt/ui',
         '@nuxt/scripts',
+        '@nuxt/image',
         [
             '@nuxtjs/google-fonts',
             {

@@ -36,13 +36,14 @@ const clearImage = () => {
       <!-- Affichage du image -->
       <div v-if="image?.src" class="flex items-center justify-center gap-4">
         <div class="relative w-max flex items-center justify-center group">
-          <img
+          <NuxtImg
               :src="image.src"
               alt="Uploaded Image"
-              class="rounded-2xl object-cover w-48 h-24 border-gray-200 rounded-lg"
+              class="object-cover w-48 h-24 border-gray-200 rounded-lg"
           />
           <UButton
               variant="link"
+              aria-label="Clear Image"
               class="text-red-600 p-2 text-sm underline cursor-pointer absolute rounded-full bg-white -top-4 -right-4 opacity-0 group-hover:opacity-100 transition duration-200 ease-in-out"
               @click="clearImage">
             <UIcon name="lucide:trash" class="w-4 h-4 bg-red"/>

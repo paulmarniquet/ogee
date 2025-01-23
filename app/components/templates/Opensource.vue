@@ -33,8 +33,8 @@ const props = defineProps({
       ></div>
 
       <div class="absolute inset-0 z-10 noise-container">
-        <img
-            src="../../assets/noise.svg"
+        <NuxtImg
+            src="/noise.svg"
             class="w-full h-full object-cover noise-image"
             :style="{opacity: properties.noise, imageRendering: 'high-quality', transform: 'scale(1.01)'}"
             alt="Noise"/>
@@ -86,7 +86,7 @@ const props = defineProps({
           paddingLeft: '4rem',
         }"
       >
-        <img
+        <NuxtImg
             :src="properties.image.src"
             class="rounded-lg"
             alt="Image"

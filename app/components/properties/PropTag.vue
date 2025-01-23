@@ -3,8 +3,10 @@
     <label class="block text-sm font-medium text-gray-700">Tag</label>
     <div class="flex rounded-md justify-center items-end">
       <UInput
+          aria-label="Tag Text"
           :value="props.tag.text"
           @input="handleTagChange"
+          placeholder="Enter tag text"
           class="mt-1 block text-primary w-full rounded-md border-gray-300"
       />
       <FontSettings

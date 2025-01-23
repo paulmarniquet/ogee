@@ -36,13 +36,14 @@ const clearLogo = () => {
 
       <div v-if="logo?.src" class="flex items-center justify-center gap-4">
         <div class="relative w-max flex items-center justify-center group">
-          <img
+          <NuxtImg
               :src="logo.src"
               alt="Uploaded Logo"
               class="max-w-22 max-h-12 object-cover border-1 border-gray-200 rounded-lg"
           />
           <UButton
               variant="link"
+              aria-label="Clear Logo"
               class="text-red-600 p-2 text-sm underline cursor-pointer absolute rounded-full bg-white -top-4 -right-4 opacity-0 group-hover:opacity-100 transition duration-200 ease-in-out"
               @click="clearLogo">
             <UIcon name="lucide:trash" class="w-4 h-4 bg-red"/>
