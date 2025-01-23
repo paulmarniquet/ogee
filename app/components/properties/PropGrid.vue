@@ -9,7 +9,10 @@ const props = defineProps({
 
 const emit = defineEmits(['update:grid']);
 
-const grids: any = [['none', 'ant-design:close-circle-outlined'], ['grid', 'tdesign:artboard'], ['dots', 'ant-design:ellipsis-outlined']];
+const grids: any = [['none', 'ant-design:close-circle-outlined'],
+  ['grid', 'tdesign:artboard'],
+  ['dots', 'ant-design:ellipsis-outlined'],
+  ['graph', 'hugeicons:dialpad-square-01']];
 
 const updateGrid = (key: string, value: any) => {
   emit('update:grid', {...props.grid, [key]: value});
@@ -20,29 +23,29 @@ const updateGrid = (key: string, value: any) => {
   <div>
     <label class="block font-bold text-gray-700 mb-4 mt-6">Grid</label>
 
-    <div class="flex space-x-1 items-start justify-center">
+    <div class="flex items-start justify-center gap-1">
       <!-- Pattern Section -->
-        <div class="flex space-x-2 mb-4">
-          <button
-              v-for="pattern in grids.map((g : string) => g[0])"
-              :key="pattern"
-              @click="updateGrid('pattern', pattern)"
-              :class="[
-                  'px-2 py-1 rounded border flex items-center justify-center cursor-pointer text-sm gap-2 hover:bg-gray-100 transition duration-300 ease-in-out',
+      <div class="flex space-x-2 mb-4 items-center justify-center">
+        <button
+            v-for="pattern in grids.map((g : string) => g[0])"
+            :key="pattern"
+            @click="updateGrid('pattern', pattern)"
+            :class="[
+                  'px-2 py-1 rounded-xl border w-12 flex flex-col items-center justify-center cursor-pointer text-sm gap-1 hover:bg-gray-100 transition duration-300 ease-in-out',
                   grid.pattern === pattern ? 'border-primary-600' : 'border-gray-300',
                 ]"
-          >
-            <UIcon :name="grids.find((g : string) => g[0] === pattern)[1]" class="w-5 h-5"/>
-            {{ pattern }}
-          </button>
-        </div>
+        >
+          <UIcon
+              :name="grids.find((g : string) => g[0] === pattern)[1]" class="w-5 h-5"/>
+        </button>
+      </div>
 
       <UPopover>
         <UButton
             color="neutral"
             variant="subtle"
             icon="lucide:chart-no-axes-gantt"
-            class="ml-1 max-h-8 opacity-80 hover:opacity-100 transition-opacity duration-300 ease-in-out"
+            class="ml-1 opacity-80 hover:opacity-100 transition-opacity duration-300 ease-in-out"
         />
         <template #content>
           <div class="p-4 bg-white rounded-lg shadow-md w-72">
@@ -52,12 +55,12 @@ const updateGrid = (key: string, value: any) => {
                 <label class="block text-sm mt-4 font-medium text-gray-700">Opacity</label>
                 <div class="flex items-center justify-center gap-4">
                   <USlider size="xs"
-                      :min="0"
-                      :max="0.8"
-                      :step="0.1"
-                      v-model="grid.opacity"
-                      class="mt-2"
-                      @input="updateGrid('opacity', grid.opacity)"
+                           :min="0"
+                           :max="0.8"
+                           :step="0.1"
+                           v-model="grid.opacity"
+                           class="mt-2"
+                           @input="updateGrid('opacity', grid.opacity)"
                   />
                   <span class="font-light border-1 border-gray-200 rounded-full px-2">{{ grid.opacity }}</span>
                 </div>
@@ -67,12 +70,12 @@ const updateGrid = (key: string, value: any) => {
                 <label class="block text-sm mt-4 font-medium text-gray-700">Blur Radius</label>
                 <div class="flex items-center justify-center gap-4">
                   <USlider size="xs"
-                      :min="0"
-                      :max="10"
-                      :step="1"
-                      v-model="grid.blur"
-                      class="mt-2"
-                      @input="updateGrid('blur', grid.blur)"
+                           :min="0"
+                           :max="10"
+                           :step="1"
+                           v-model="grid.blur"
+                           class="mt-2"
+                           @input="updateGrid('blur', grid.blur)"
                   />
                   <span class="font-light border-1 border-gray-200 rounded-full px-2">{{ grid.blur }}</span>
                 </div>

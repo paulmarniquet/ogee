@@ -29,7 +29,7 @@
 
 ### Vision & Goals
 
-ogee aims to simplify the creation of Open Graph images with customizable templates that cater to different needs:
+ogee aims to simplify the creation of images with customizable templates that cater to different needs:
 
 - 🎯 **Simplify** the process of creating Open Graph images.
 - 🎨 **Empower** designers and developers with flexible templates.
@@ -49,7 +49,7 @@ ogee aims to simplify the creation of Open Graph images with customizable templa
 
 - 🎨 **Customizable Design**
     - Dynamic properties: backgrounds, gradients, fonts, colors, and more.
-    - Standardized dimensions for social platforms (e.g., Facebook, Twitter, LinkedIn).
+    - Standardized dimensions for social platforms (e.g., Twitter, LinkedIn).
 
 - 🔄 **Automation**
     - API-first approach for programmatic generation.
@@ -59,7 +59,7 @@ ogee aims to simplify the creation of Open Graph images with customizable templa
     - Caching for faster rendering.
     - Lightweight and fast image generation engine.
 
-### Why Choose ogee ?
+### Why ogee ?
 
 - **User-Friendly**: ogee provides an intuitive interface for non-technical users while offering advanced capabilities for developers.
 - **Highly Customizable**: Adapt templates to fit your branding effortlessly.
@@ -86,4 +86,4 @@ Submit feature requests via the [GitHub Issues](https://github.com/paulmarniquet
 
 ## 📄 License & Credits
 
-OGeez is licensed under the [MIT License](https://github.com/paulmarniquet/ogee/blob/main/LICENSE).
+ogee is licensed under the [MIT License](https://github.com/paulmarniquet/ogee/blob/main/LICENSE).
