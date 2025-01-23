@@ -1,5 +1,7 @@
 <script setup lang="ts">
 
+
+
 const props = defineProps({
   gradient: {
     type: Object,
@@ -16,14 +18,14 @@ const emit = defineEmits(['update:gradient']);
 
 const selectGradient = (newGradient: any) => {
   const updatedGradient = {
-    start: newGradient.colorStops[0],
-    end: newGradient.colorStops[newGradient.colorStops.length - 1],
+    colorStops : newGradient.colorStops,
     angle: newGradient.angle !== undefined ? newGradient.angle : props.gradient.angle,
   };
   emit('update:gradient', updatedGradient);
 };
 
 const activeTab = ref(items.value[0].key);
+
 </script>
 
 <template>
@@ -48,7 +50,7 @@ const activeTab = ref(items.value[0].key);
                  transition duration-300 ease-in-out focus:outline-none focus:border-2 focus:border-primary-600
                  focus:hover:scale-100"
                 :style="{
-                background: `linear-gradient(${gradient.angle}deg, ${color.colorStops[0]}, ${color.colorStops[color.colorStops.length - 1]})`
+                background:  generateGradient(color.colorStops, gradient.angle)
               }"
             />
           </div>

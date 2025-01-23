@@ -1,3 +1,6 @@
+export const generateGradient = (colorStops : any, angle = 45) => {
+    return `linear-gradient(${angle}deg, ${colorStops[0]}, ${colorStops[colorStops.length - 1]})`;
+}
 
 export const solidColors = [
     // red/pink
@@ -57,10 +60,10 @@ export const solidColors = [
 export const gradientColors = [
     // red/orange/yellow
     {
-        colorStops: ["rgb(236, 72, 153)", "rgb(239, 68, 68)", "rgb(234, 179, 8)"],
+        colorStops: ["#E0EAFC", "#CFDEF3"],
     },
     {
-        colorStops: ["rgb(202, 138, 4)", "rgb(220, 38, 38)"],
+        colorStops: ["#ED4264", "#FFEDBC"],
     },
     {
         colorStops: ["rgb(244, 63, 94)", "rgb(248, 113, 113)", "rgb(239, 68, 68)"],
@@ -92,16 +95,15 @@ export const gradientColors = [
     // blue/purple
     {
         colorStops: [
-            "rgb(134, 239, 172)",
-            "rgb(59, 130, 246)",
-            "rgb(147, 51, 234)",
+            "#EDE574",
+            "#E1F5C4",
         ],
     },
     {
         colorStops: ["rgb(134, 239, 172)", "rgb(192, 132, 252)"],
     },
     {
-        colorStops: ["rgb(192, 132, 252)", "rgb(250, 204, 21)"],
+        colorStops: ["#16222A", "#3A6073"],
     },
     {
         colorStops: ["rgb(165, 180, 252)", "rgb(192, 132, 252)"],
@@ -179,7 +181,7 @@ export const gradientColors = [
         colorStops: ["#d7d2cc 0%", "#304352 100%"],
     },
     {
-        colorStops: ["#8baaaa 0%", "#ae8b9c 100%"],
+        colorStops: ["#1F1C2C 0%", "#928DAB 100%"],
     },
     {
         colorStops: ["rgb(229, 231, 235)", "rgb(156, 163, 175)", "rgb(75, 85, 99)"],

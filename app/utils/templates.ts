@@ -34,8 +34,7 @@ export const templateCategories = [
                         color: "#FFFFFF",
                     },
                     gradient: {
-                        start: "#434343",
-                        end: "black",
+                        colorStops: ["#434343", "black"],
                         angle: 45,
                     },
                     grid: {
@@ -76,8 +75,7 @@ export const templateCategories = [
                         color: "#f9fafb",
                     },
                     gradient: {
-                        start: "#FF0080",
-                        end: "#FF8C00",
+                        colorStops: ["#FF0080", "#FF8C00"],
                         angle: 45,
                     },
                     grid: {
@@ -118,8 +116,7 @@ export const templateCategories = [
                         color: "black",
                     },
                     gradient: {
-                        start: "#f5f7fa ",
-                        end: "#c3cfe2 ",
+                        colorStops: ["#f5f7fa", "#c3cfe2"],
                         angle: 45,
                     },
                     grid: {
@@ -160,8 +157,7 @@ export const templateCategories = [
                         color: "black",
                     },
                     gradient: {
-                        start: "rgb(252, 227, 138)",
-                        end: "rgb(252, 227, 138)",
+                        colorStops: ["rgb(252, 227, 138)", "rgb(252, 227, 138)"],
                         angle: 45,
                     },
                     grid: {
@@ -204,8 +200,7 @@ export const templateCategories = [
                         color: "#FFFFFF",
                     },
                     gradient: {
-                        start: "#434343",
-                        end: "black",
+                        colorStops: ["#434343", "black"],
                         angle: 45,
                     },
                     grid: {
@@ -241,8 +236,7 @@ export const templateCategories = [
                         color: "#FFFFFF",
                     },
                     gradient: {
-                        start: "rgb(17, 24, 39)",
-                        end: "rgb(75, 85, 99)",
+                        colorStops: ["rgb(17, 24, 39)", "rgb(75, 85, 99)"],
                         angle: 45,
                     },
                     grid: {
@@ -276,8 +270,7 @@ export const templateCategories = [
                         color: "#FFFFFF",
                     },
                     gradient: {
-                        start: "rgb(233, 213, 255)",
-                        end: "rgb(107, 33, 168)",
+                        colorStops: ["rgb(233, 213, 255)", "rgb(192, 132, 252)", "rgb(107, 33, 168)"],
                         angle: 45,
                     },
                     grid: {

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+
 const props = defineProps({
   properties: {
     type: Object,
@@ -20,7 +21,7 @@ const props = defineProps({
     <div
         class="w-full h-full overflow-hidden preview-canvas relative flex items-center justify-center"
         :style="{
-        background: `linear-gradient(${properties.gradient?.angle}deg, ${properties.gradient?.start}, ${properties.gradient?.end})`,
+        background: generateGradient(properties.gradient?.colorStops, properties.gradient?.angle),
         aspectRatio: properties.canvas?.width / properties.canvas?.height
       }"
     >
