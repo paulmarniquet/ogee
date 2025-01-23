@@ -37,7 +37,6 @@ const clearLogo = () => {
       <div v-if="logo?.src" class="flex items-center justify-center gap-4">
         <div class="relative w-max flex items-center justify-center group">
           <NuxtImg
-              format="webp"
               :src="logo.src"
               alt="Uploaded Logo"
               class="max-w-22 max-h-12 object-cover border-1 border-gray-200 rounded-lg"
