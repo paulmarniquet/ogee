@@ -1,119 +1,59 @@
-<script setup>
-import { useStorage } from '@vueuse/core';
+<script setup lang="ts">
+import type { Category, Template } from "~~/types";
+import { useTemplateManager } from '~/composables/useTemplateManager'
+import { useBlurEffects } from '~/composables/useBlurEffects'
 
-const selectedCategory = ref(templateCategories[0]);
-const selectedTemplate = ref(selectedCategory.value.templates[0]);
-const properties = ref({...selectedTemplate.value.properties});
-const templates = computed(() => selectedCategory.value.templates);
+interface Props {
+  initialCategory?: Category
+}
 
-const getLocalStorageKey = (template) => `template-${template.name}`;
+const props = withDefaults(defineProps<Props>(), {
+  initialCategory: templateCategories[0]
+})
 
-const loadPropertiesFromLocalStorage = (template) => {
-  // Vérifier si on est côté client
-  if (import.meta.client) {
-    const storedProperties = useStorage(getLocalStorageKey(template), null, window.localStorage, {
-      serializer: {
-        read: (v) => v ? JSON.parse(v) : null,
-        write: (v) => JSON.stringify(v),
+const {
+  selectedCategory,
+  selectedTemplate,
+  properties,
+  templates,
+  selectTemplate,
+  selectCategory,
+  resetTemplate,
+  resetAllTemplates,
+} = useTemplateManager(props.initialCategory)
+
+const { blurStart, blurEnd } = useBlurEffects(properties)
+
+const contextMenuItems = computed(() => [
+  {
+    icon: 'i-lucide-monitor',
+    label: 'Theme',
+    children: [
+      {
+        label: 'Light',
+        icon: 'i-lucide-sun',
       },
-    });
-
-    if (storedProperties.value) {
-      const templateProperties = {...template.properties};
-      const prioritizedProperties = {};
-
-      if (templateProperties.logo) {
-        prioritizedProperties.logo = templateProperties.logo;
-      }
-      if (templateProperties.image) {
-        prioritizedProperties.image = templateProperties.image;
-      }
-
-      return {
-        ...prioritizedProperties,
-        ...storedProperties.value,
-      };
-    }
-  }
-
-  return {
-    ...template.properties,
-  };
-};
-
-const savePropertiesToLocalStorage = (template, properties) => {
-  if (import.meta.client) {
-    const {logo, image, ...filteredProperties} = properties;
-    const storage = useStorage(getLocalStorageKey(template), filteredProperties, window.localStorage, {
-      serializer: {
-        read: (v) => v ? JSON.parse(v) : null,
-        write: (v) => JSON.stringify(v),
+      {
+        label: 'Dark',
+        icon: 'i-lucide-moon',
       },
-    });
-    storage.value = filteredProperties;
-  }
-};
-
-let isResetting = false;
-
-const resetPropertiesToDefault = (template) => {
-  isResetting = true;
-  if (import.meta.client) {
-    const storage = useStorage(getLocalStorageKey(template), template.properties, window.localStorage);
-    storage.value = {...template.properties};
-  }
-  selectTemplate(template);
-  isResetting = false;
-};
-
-watch(
-    () => properties.value,
-    (newProperties) => {
-      if (!isResetting) {
-        savePropertiesToLocalStorage(selectedTemplate.value, newProperties);
-      }
-    },
-    {deep: true}
-);
-
-const resetAllPropertiesToDefault = () => {
-  for (const category of templateCategories) {
-    for (const template of category.templates) {
-      resetPropertiesToDefault(template);
-    }
-  }
-  selectTemplate(selectedTemplate.value);
-};
-
-const selectTemplate = (template) => {
-  selectedTemplate.value = template;
-  const storedProperties = loadPropertiesFromLocalStorage(template);
-  properties.value = reactive(storedProperties || {...template.properties});
-};
-
-const selectCategory = (category) => {
-  selectedCategory.value = category;
-  const firstTemplate = category.templates[0];
-  selectTemplate(firstTemplate);
-};
-
-// Calcul des propriétés liées à la grille (blur)
-const blurStart = computed(() => {
-  const blurValue = properties.value.grid?.blur || 0;
-  return Math.min(blurValue * 8, 40);
-});
-
-const blurEnd = computed(() => {
-  const blurValue = properties.value.grid?.blur || 0;
-  return Math.min(blurValue * 15, 100);
-});
-
-selectTemplate(selectedTemplate.value);
+    ],
+  },
+  {
+    label: 'Reset template',
+    icon: 'i-lucide-squircle',
+    onSelect: () => resetTemplate(selectedTemplate.value),
+  },
+  {
+    label: 'Reset all templates',
+    icon: 'i-lucide-square-x',
+    onSelect: resetAllTemplates,
+  },
+])
 
 onMounted(() => {
-  const initialTemplate = selectedCategory.value.templates[0];
-  selectTemplate(initialTemplate);
-});
+  selectTemplate(selectedTemplate.value)
+})
 </script>
 
 <template>
