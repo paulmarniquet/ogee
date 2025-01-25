@@ -1,6 +1,5 @@
 <script setup>
-
-import nuxtStorage from "nuxt-storage/nuxt-storage.js";
+import { useStorage } from '@vueuse/core';
 
 const selectedCategory = ref(templateCategories[0]);
 const selectedTemplate = ref(selectedCategory.value.templates[0]);
@@ -10,25 +9,31 @@ const templates = computed(() => selectedCategory.value.templates);
 const getLocalStorageKey = (template) => `template-${template.name}`;
 
 const loadPropertiesFromLocalStorage = (template) => {
-  const storedProperties = nuxtStorage.localStorage.getData(getLocalStorageKey(template));
+  // Vérifier si on est côté client
+  if (import.meta.client) {
+    const storedProperties = useStorage(getLocalStorageKey(template), null, window.localStorage, {
+      serializer: {
+        read: (v) => v ? JSON.parse(v) : null,
+        write: (v) => JSON.stringify(v),
+      },
+    });
 
-  if (storedProperties) {
-    const parsedProperties = JSON.parse(storedProperties);
+    if (storedProperties.value) {
+      const templateProperties = {...template.properties};
+      const prioritizedProperties = {};
 
-    const templateProperties = {...template.properties};
-    const prioritizedProperties = {};
+      if (templateProperties.logo) {
+        prioritizedProperties.logo = templateProperties.logo;
+      }
+      if (templateProperties.image) {
+        prioritizedProperties.image = templateProperties.image;
+      }
 
-    if (templateProperties.logo) {
-      prioritizedProperties.logo = templateProperties.logo;
+      return {
+        ...prioritizedProperties,
+        ...storedProperties.value,
+      };
     }
-    if (templateProperties.image) {
-      prioritizedProperties.image = templateProperties.image;
-    }
-
-    return {
-      ...prioritizedProperties,
-      ...parsedProperties,
-    };
   }
 
   return {
@@ -36,18 +41,27 @@ const loadPropertiesFromLocalStorage = (template) => {
   };
 };
 
-
 const savePropertiesToLocalStorage = (template, properties) => {
-  const {logo, image, ...filteredProperties} = properties;
-  nuxtStorage.localStorage.setData(getLocalStorageKey(template), JSON.stringify(filteredProperties));
+  if (import.meta.client) {
+    const {logo, image, ...filteredProperties} = properties;
+    const storage = useStorage(getLocalStorageKey(template), filteredProperties, window.localStorage, {
+      serializer: {
+        read: (v) => v ? JSON.parse(v) : null,
+        write: (v) => JSON.stringify(v),
+      },
+    });
+    storage.value = filteredProperties;
+  }
 };
 
 let isResetting = false;
 
-
 const resetPropertiesToDefault = (template) => {
   isResetting = true;
-  nuxtStorage.localStorage.setData(getLocalStorageKey(template), JSON.stringify({...template.properties}));
+  if (import.meta.client) {
+    const storage = useStorage(getLocalStorageKey(template), template.properties, window.localStorage);
+    storage.value = {...template.properties};
+  }
   selectTemplate(template);
   isResetting = false;
 };

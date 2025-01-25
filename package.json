@@ -19,5 +19,9 @@
     "nuxt-storage": "^1.2.2",
     "vue": "latest",
     "vue-router": "latest"
+  },
+  "devDependencies": {
+    "@vueuse/core": "^12.5.0",
+    "@vueuse/nuxt": "^12.5.0"
   }
 }
