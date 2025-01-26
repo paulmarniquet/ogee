@@ -1,105 +1,59 @@
-<script setup>
+<script setup lang="ts">
+import type { Category, Template } from "~~/types";
+import { useTemplateManager } from '~/composables/useTemplateManager'
+import { useBlurEffects } from '~/composables/useBlurEffects'
 
-import nuxtStorage from "nuxt-storage/nuxt-storage.js";
+interface Props {
+  initialCategory?: Category
+}
 
-const selectedCategory = ref(templateCategories[0]);
-const selectedTemplate = ref(selectedCategory.value.templates[0]);
-const properties = ref({...selectedTemplate.value.properties});
-const templates = computed(() => selectedCategory.value.templates);
+const props = withDefaults(defineProps<Props>(), {
+  initialCategory: templateCategories[0]
+})
 
-const getLocalStorageKey = (template) => `template-${template.name}`;
+const {
+  selectedCategory,
+  selectedTemplate,
+  properties,
+  templates,
+  selectTemplate,
+  selectCategory,
+  resetTemplate,
+  resetAllTemplates,
+} = useTemplateManager(props.initialCategory)
 
-const loadPropertiesFromLocalStorage = (template) => {
-  const storedProperties = nuxtStorage.localStorage.getData(getLocalStorageKey(template));
+const { blurStart, blurEnd } = useBlurEffects(properties)
 
-  if (storedProperties) {
-    const parsedProperties = JSON.parse(storedProperties);
-
-    const templateProperties = {...template.properties};
-    const prioritizedProperties = {};
-
-    if (templateProperties.logo) {
-      prioritizedProperties.logo = templateProperties.logo;
-    }
-    if (templateProperties.image) {
-      prioritizedProperties.image = templateProperties.image;
-    }
-
-    return {
-      ...prioritizedProperties,
-      ...parsedProperties,
-    };
-  }
-
-  return {
-    ...template.properties,
-  };
-};
-
-
-const savePropertiesToLocalStorage = (template, properties) => {
-  const {logo, image, ...filteredProperties} = properties;
-  nuxtStorage.localStorage.setData(getLocalStorageKey(template), JSON.stringify(filteredProperties));
-};
-
-let isResetting = false;
-
-
-const resetPropertiesToDefault = (template) => {
-  isResetting = true;
-  nuxtStorage.localStorage.setData(getLocalStorageKey(template), JSON.stringify({...template.properties}));
-  selectTemplate(template);
-  isResetting = false;
-};
-
-watch(
-    () => properties.value,
-    (newProperties) => {
-      if (!isResetting) {
-        savePropertiesToLocalStorage(selectedTemplate.value, newProperties);
-      }
-    },
-    {deep: true}
-);
-
-const resetAllPropertiesToDefault = () => {
-  for (const category of templateCategories) {
-    for (const template of category.templates) {
-      resetPropertiesToDefault(template);
-    }
-  }
-  selectTemplate(selectedTemplate.value);
-};
-
-const selectTemplate = (template) => {
-  selectedTemplate.value = template;
-  const storedProperties = loadPropertiesFromLocalStorage(template);
-  properties.value = reactive(storedProperties || {...template.properties});
-};
-
-const selectCategory = (category) => {
-  selectedCategory.value = category;
-  const firstTemplate = category.templates[0];
-  selectTemplate(firstTemplate);
-};
-
-// Calcul des propriétés liées à la grille (blur)
-const blurStart = computed(() => {
-  const blurValue = properties.value.grid?.blur || 0;
-  return Math.min(blurValue * 8, 40);
-});
-
-const blurEnd = computed(() => {
-  const blurValue = properties.value.grid?.blur || 0;
-  return Math.min(blurValue * 15, 100);
-});
-
-selectTemplate(selectedTemplate.value);
+const contextMenuItems = computed(() => [
+  {
+    icon: 'i-lucide-monitor',
+    label: 'Theme',
+    children: [
+      {
+        label: 'Light',
+        icon: 'i-lucide-sun',
+      },
+      {
+        label: 'Dark',
+        icon: 'i-lucide-moon',
+      },
+    ],
+  },
+  {
+    label: 'Reset template',
+    icon: 'i-lucide-squircle',
+    onSelect: () => resetTemplate(selectedTemplate.value),
+  },
+  {
+    label: 'Reset all templates',
+    icon: 'i-lucide-square-x',
+    onSelect: resetAllTemplates,
+  },
+])
 
 onMounted(() => {
-  const initialTemplate = selectedCategory.value.templates[0];
-  selectTemplate(initialTemplate);
-});
+  selectTemplate(selectedTemplate.value)
+})
 </script>
 
 <template>
