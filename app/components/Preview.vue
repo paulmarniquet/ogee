@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import type { Category, Template } from "~~/types";
-import { useTemplateManager } from '~/composables/useTemplateManager'
-import { useBlurEffects } from '~/composables/useBlurEffects'
+import type {Category, ContextMenuItem, Template} from "~~/types";
+import {useTemplateManager} from '~/composables/useTemplateManager'
+import {useBlurEffects} from '~/composables/useBlurEffects'
 
 interface Props {
   initialCategory?: Category
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  initialCategory: templateCategories[0]
+  initialCategory: templateCategories[0],
 })
 
 const {
@@ -22,9 +22,9 @@ const {
   resetAllTemplates,
 } = useTemplateManager(props.initialCategory)
 
-const { blurStart, blurEnd } = useBlurEffects(properties)
+const {blurStart, blurEnd} = useBlurEffects(properties)
 
-const contextMenuItems = computed(() => [
+const contextMenuItems: Ref<ContextMenuItem[]> = computed(() => [
   {
     icon: 'i-lucide-monitor',
     label: 'Theme',
@@ -93,32 +93,7 @@ onMounted(() => {
       <!-- Panneau des propriétés -->
       <UContextMenu
           v-if="selectedTemplate"
-          :items="[
-          {
-            icon: 'i-lucide-monitor',
-            label: 'Theme',
-            children: [
-              {
-                label: 'Light',
-                icon: 'i-lucide-sun',
-              },
-              {
-                label: 'Dark',
-                icon: 'i-lucide-moon',
-              },
-            ],
-          },
-          {
-            label: 'Reset template',
-            icon: 'i-lucide-squircle',
-            onSelect: () => resetPropertiesToDefault(selectedTemplate),
-          },
-          {
-            label: 'Reset all templates',
-            icon: 'i-lucide-square-x',
-            onSelect: () => resetAllPropertiesToDefault(),
-          },
-        ]"
+          :items="contextMenuItems"
       >
         <div class="!bg-white rounded-lg shadow-sm p-6">
           <h2 class="text-lg font-semibold mb-2">Template Properties</h2>
@@ -126,7 +101,7 @@ onMounted(() => {
             Customize the properties of the selected template
           </h3>
           <div class="space-y-4">
-            <div v-for="key in Object.keys(properties)" :key="key">
+            <div v-for="key in Object.keys(properties) as string | any" :key="key">
               <component
                   v-model:[key]="properties[key]"
                   :is="'properties-prop' + key.at(0).toUpperCase() + key.slice(1)"
