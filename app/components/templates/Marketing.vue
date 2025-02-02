@@ -54,7 +54,7 @@ const props = defineProps({
           <div v-if="properties.logo?.src">
             <NuxtImg
                 :src="properties.logo?.src"
-                class="mb-12 max-w-22 max-h-12 object-cover"
+                class="mb-12 max-w-20 max-h-10 object-cover"
                 alt="Logo"
             />
           </div>
@@ -91,11 +91,11 @@ const props = defineProps({
              class="w-[45%] h-full flex z-50 relative"
         >
           <div class="absolute top-16 left-0 w-full h-full">
-          <NuxtImg
-              :src="properties.image.src"
-              class="w-full h-full object-cover object-left"
-              alt="Image"
-          />
+            <NuxtImg
+                :src="properties.image.src"
+                class="w-full h-full object-cover object-left"
+                alt="Image"
+            />
           </div>
         </div>
       </div>

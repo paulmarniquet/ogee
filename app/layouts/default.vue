@@ -4,7 +4,7 @@
 <template>
   <header class="flex items-center justify-between p-4 max-w-6xl mx-auto bg-white">
     <slot name="header" class="flex items-center space-x-4">
-      <NuxtImg src="logo.png" alt="Ogee Logo" width="40" height="40"/>
+      <NuxtImg src="logo.png" alt="Ogee Logo" width="32" height="32"/>
     </slot>
 
     <NuxtLink

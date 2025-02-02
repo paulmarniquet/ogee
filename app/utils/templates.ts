@@ -10,7 +10,7 @@ export const templateCategories = [
                 preview: "marketing",
                 properties: {
                     logo: {
-                        src: "/logo.png",
+                        src: "/white_logo.png",
                         width: 12,
                         height: 12
                     },
