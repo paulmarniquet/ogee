@@ -50,7 +50,7 @@ const updateGrid = (key: string, value: any) => {
             class="ml-1 opacity-80 hover:opacity-100 transition-opacity duration-300 ease-in-out"
         />
         <template #content>
-          <div class="p-4 bg-white rounded-lg shadow-md w-72">
+          <div class="p-4 rounded-lg shadow-md w-72">
             <!-- Style Section -->
             <div class="mb-4">
               <div class="mb-4">

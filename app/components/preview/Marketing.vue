@@ -3,7 +3,7 @@
 
 <template>
   <div
-      class="flex flex-col gap-2 w-48 h-24 p-4 rounded-xl cursor-pointer hover:bg-gray-100 transition duration-300 ease-in-out overflow-hidden">
+      class="flex flex-col gap-2 w-48 h-24 p-4 rounded-xl cursor-pointer transition duration-300 ease-in-out overflow-hidden">
 
     <div class="h-full w-full">
       <div class="bg-gray-200 h-3 w-3 rounded-full md:h-3 md:w-3"></div>

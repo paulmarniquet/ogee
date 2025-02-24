@@ -44,7 +44,7 @@ const clearImage = () => {
           <UButton
               variant="link"
               aria-label="Clear Image"
-              class="text-red-600 p-2 text-sm underline cursor-pointer absolute rounded-full bg-white -top-4 -right-4 opacity-0 group-hover:opacity-100 transition duration-200 ease-in-out"
+              class="text-red-600 p-2 text-sm underline cursor-pointer absolute rounded-full -top-4 -right-4 opacity-0 group-hover:opacity-100 transition duration-200 ease-in-out"
               @click="clearImage">
             <UIcon name="lucide:trash" class="w-4 h-4 bg-red"/>
           </UButton>

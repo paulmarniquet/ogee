@@ -17,7 +17,7 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="bg-white shadow-sm rounded-lg">
+  <div class="shadow-sm rounded-lg">
     <div
         class="w-full overflow-hidden preview-canvas relative"
         :style="{

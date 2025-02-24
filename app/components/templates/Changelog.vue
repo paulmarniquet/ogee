@@ -1,6 +1,5 @@
 <script setup lang="ts">
 
-
 const props = defineProps({
   properties: {
     type: Object,
@@ -18,7 +17,7 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="bg-white shadow-sm rounded-lg">
+  <div class="shadow-sm rounded-lg">
     <div
         class="w-full h-full overflow-hidden preview-canvas relative flex items-center justify-center"
         :style="{

@@ -21,7 +21,7 @@ const selectedWeight = computed(() => props.weight);
         class="ml-1 max-h-8 opacity-80 hover:opacity-100 transition-opacity duration-300 ease-in-out"
     />
     <template #content>
-      <div class="p-4 bg-white rounded-lg shadow-md w-72">
+      <div class="p-4 rounded-lg shadow-md w-72">
         <!-- Font Family -->
         <div class="mb-4 flex gap-4 items-center justify-between">
           <label class="block text-sm font-medium text-gray-700 mb-1 w-2/3">Family</label>

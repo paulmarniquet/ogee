@@ -2,8 +2,11 @@
 @import "@nuxt/ui";
 
 :root {
-    --ui-primary: #0B1215;
-    --ui-bg-inverted: #0B1215;
+    --ui-primary: #OC1421;
+}
+
+.dark {
+    --ui-primary: white;
 }
 
 body {
