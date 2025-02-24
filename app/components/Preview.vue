@@ -57,7 +57,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="min-h-screen bg-gray-50 p-6">
+  <div class="min-h-screen p-6">
     <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
       <!-- Sélection de la catégorie et des templates -->
       <div class="lg:col-span-3 flex flex-col gap-2 overflow-x-auto p-4 bg-white rounded-lg shadow-sm">

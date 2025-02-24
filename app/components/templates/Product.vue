@@ -56,7 +56,10 @@ const props = defineProps({
         <div v-if="properties.logo?.src">
           <NuxtImg
               :src="properties.logo?.src"
-              class="max-w-10 max-h-12 object-cover"
+              :style="{
+                  width: `${properties.logo?.width * 0.25}rem`,
+                  height: `${properties.logo?.height * 0.25}rem`
+                }"
               alt="Logo"
           />
         </div>

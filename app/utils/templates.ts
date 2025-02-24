@@ -11,8 +11,8 @@ export const templateCategories = [
                 properties: {
                     logo: {
                         src: "/white_logo.png",
-                        width: 12,
-                        height: 12
+                        width: 10,
+                        height: 10
                     },
                     image: {
                         src: "/marketing.png",
@@ -98,8 +98,8 @@ export const templateCategories = [
                 properties: {
                     logo: {
                         src: "/logo.png",
-                        width: 8,
-                        height: 8
+                        width: 12,
+                        height: 12
                     },
                     title: {
                         text: "ogee",
@@ -139,8 +139,8 @@ export const templateCategories = [
                 properties: {
                     logo: {
                         src: "/bun.png",
-                        width: 8,
-                        height: 8
+                        width: 16,
+                        height: 16
                     },
                     title: {
                         text: "Changelog #2",
@@ -259,8 +259,8 @@ export const templateCategories = [
                 properties: {
                     logo: {
                         src: "/linear.png",
-                        width: 8,
-                        height: 8
+                        width: 11,
+                        height: 11
                     },
                     description: {
                         text: "Organize and track tasks with clarity and speed.",

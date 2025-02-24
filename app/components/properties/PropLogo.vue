@@ -34,7 +34,21 @@ const clearLogo = () => {
     <label class="block text-sm font-medium text-gray-700">Logo</label>
     <div class="mt-4">
 
-      <div v-if="logo?.src" class="flex items-center justify-center gap-4">
+      <div v-if="logo?.src" class="flex items-center justify-between gap-4">
+
+        <UButton
+            variant="link"
+            aria-label="Decrease Logo Size"
+            class="text-gray-600 p-2 text-sm underline cursor-pointer"
+            @click="emit('update:logo', {
+              src: logo.src,
+              width: logo.width - 1,
+              height: logo.height - 1
+            })">
+          <UIcon name="line-md:minus-circle" class="w-5 h-5 bg-gray-500 hover:bg-gray-700 transition-colors duration-200 ease-in-out"/>
+        </UButton>
+
+
         <div class="relative w-max flex items-center justify-center group">
           <NuxtImg
               :src="logo.src"
@@ -49,6 +63,18 @@ const clearLogo = () => {
             <UIcon name="lucide:trash" class="w-4 h-4 bg-red"/>
           </UButton>
         </div>
+
+        <UButton
+            variant="link"
+            aria-label="Increase Logo Size"
+            class="text-gray-600 p-2 text-sm underline cursor-pointer"
+            @click="emit('update:logo', {
+              src: logo.src,
+              width: logo.width + 1,
+              height: logo.height + 1
+            })">
+          <UIcon name="line-md:plus-circle" class="w-5 h-5 bg-gray-500 hover:bg-gray-700 transition-colors duration-200 ease-in-out"/>
+        </UButton>
       </div>
 
       <div v-else>
