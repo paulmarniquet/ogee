@@ -68,6 +68,7 @@ onMounted(() => {
                 :icon="category.icon"
                 :label="category.name"
                 variant="subtle"
+                class="cursor-pointer"
             ></UButton>
           </div>
         </div>
