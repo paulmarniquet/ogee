@@ -287,5 +287,48 @@ export const templateCategories = [
                 },
             },
         ],
-    }
+    },
+    // {
+    //     id: "linkedin",
+    //     name: "Linkedin",
+    //     icon: "entypo-social:linkedin-with-circle",
+    //     templates: [
+    //         {
+    //             id: 1,
+    //             name: "linkedin-banner",
+    //             preview: "linkedin-banner",
+    //             properties: {
+    //                 title: {
+    //                     text: "endpts",
+    //                     fontFamily: "Inter",
+    //                     fontWeight: 600,
+    //                     fontSize: 24,
+    //                     color: "#FFFFFF",
+    //                 },
+    //                 description: {
+    //                     text: "| Deploy your API in seconds",
+    //                     fontFamily: "Inter",
+    //                     fontWeight: 400,
+    //                     fontSize: 22,
+    //                     color: "#FFFFFF",
+    //                 },
+    //                 gradient: {
+    //                     colorStops: ["#434343", "black"],
+    //                     angle: 45,
+    //                 },
+    //                 grid: {
+    //                     pattern: 'none',
+    //                     color: '#000000',
+    //                     opacity: 0.5,
+    //                     blur: 4,
+    //                 },
+    //                 noise: 0.2,
+    //                 canvas: {
+    //                     width: 1200,
+    //                     height: 627,
+    //                 }
+    //             },
+    //         },
+    //     ],
+    // }
 ];

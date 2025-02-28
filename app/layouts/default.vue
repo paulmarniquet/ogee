@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {ref} from 'vue'
 
-const isDarkMode = ref(false)
+const isDarkMode = ref(true)
 const toggleTheme = () => {
   document.documentElement.classList.toggle('dark')
   isDarkMode.value = !isDarkMode.value

@@ -14,11 +14,11 @@
     "@nuxt/scripts": "0.9.5",
     "@nuxt/ui": "3.0.0-alpha.11",
     "@nuxtjs/google-fonts": "3.2.0",
+    "@vueuse/core": "^12.5.0",
+    "@vueuse/nuxt": "^12.5.0",
     "html-to-image": "^1.11.11",
     "nuxt": "^3.15.1",
     "vue": "latest",
-    "vue-router": "latest",
-    "@vueuse/core": "^12.5.0",
-    "@vueuse/nuxt": "^12.5.0"
+    "vue-router": "latest"
   }
 }

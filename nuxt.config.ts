@@ -5,6 +5,10 @@ export default defineNuxtConfig({
         dirs: ['~/components', '~/components/templates', '~/components/properties', "~/components/preview"],
     },
 
+    colorMode: {
+        preference: 'light'
+    },
+
     app: {
         head: {
             htmlAttrs: {
