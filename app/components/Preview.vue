@@ -8,7 +8,7 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  initialCategory: templateCategories[0],
+  initialCategory: templateCategories[0] as any,
 })
 
 const {
@@ -50,7 +50,7 @@ onMounted(() => {
         <div class="flex flex-row gap-4 mb-4">
           <div v-for="category in templateCategories" :key="category.id">
             <UButton
-                @click="selectCategory(category)"
+                @click="selectCategory(category as any)"
                 :icon="category.icon"
                 :label="category.name"
                 variant="ghost"

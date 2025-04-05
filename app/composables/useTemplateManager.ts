@@ -18,7 +18,7 @@ export function useTemplateManager(initialCategory: Category) {
 
     const selectCategory = (category: Category) => {
         selectedCategory.value = category
-        selectTemplate(category.templates[0])
+        selectTemplate(category.templates[0] as Template)
     }
 
     const resetTemplate = (template: Template) => {
@@ -33,7 +33,7 @@ export function useTemplateManager(initialCategory: Category) {
     const resetAllTemplates = () => {
         for (const category of templateCategories) {
             for (const template of category.templates) {
-                import.meta.client ? storage.saveProperties(template, template.properties) : null;
+                import.meta.client ? storage.saveProperties((template as any), template.properties) : null;
             }
         }
         properties.value = {...selectedTemplate.value.properties};

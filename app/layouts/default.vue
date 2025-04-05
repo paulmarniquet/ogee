@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import {ref} from 'vue'
-
 const isDarkMode = ref(true)
 const toggleTheme = () => {
   document.documentElement.classList.toggle('dark')
@@ -13,23 +11,18 @@ const toggleTheme = () => {
     <slot name="header" class="flex items-center space-x-4">
       <NuxtImg
           :src="isDarkMode ? 'logo.png' : 'white_logo.png'"
-          alt="Ogee Logo"
+          alt="Ogee - Logo"
           width="32"
           height="32"
       />
     </slot>
 
-    <div>
-      <button
+      <UButton
           @click="toggleTheme"
+          variant="ghost"
+          :icon="isDarkMode ? 'lucide:moon' : 'lucide:sun-dim'"
           class="flex items-center justify-center w-10 h-10 rounded-full hover:scale-105 transition cursor-pointer"
-      >
-        <UIcon
-            :name="isDarkMode ? 'lucide:moon' : 'lucide:sun-dim'"
-            class="w-6 h-6"
-        />
-      </button>
-    </div>
+      />
   </header>
 
 
