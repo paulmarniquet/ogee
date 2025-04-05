@@ -55,10 +55,10 @@ const selectedWeight = computed(() => props.weight);
               class="max-w-24"
           >
             <template #decrement>
-              <UButton size="xs" icon="i-lucide-minus"/>
+              <UButton size="xs" icon="i-lucide-minus" class="bg-neutral-300 hover:bg-neutral-500 cursor-pointer"/>
             </template>
             <template #increment>
-              <UButton size="xs" icon="i-lucide-plus"/>
+              <UButton size="xs" icon="i-lucide-plus" class="bg-neutral-300 hover:bg-neutral-500 cursor-pointer"/>
             </template>
           </UInputNumber>
         </div>

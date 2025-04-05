@@ -26,20 +26,6 @@ const {blurStart, blurEnd} = useBlurEffects(properties)
 
 const contextMenuItems: Ref<ContextMenuItem[]> = computed(() => [
   {
-    icon: 'i-lucide-monitor',
-    label: 'Theme',
-    children: [
-      {
-        label: 'Light',
-        icon: 'i-lucide-sun',
-      },
-      {
-        label: 'Dark',
-        icon: 'i-lucide-moon',
-      },
-    ],
-  },
-  {
     label: 'Reset template',
     icon: 'i-lucide-squircle',
     onSelect: () => resetTemplate(selectedTemplate.value),
@@ -61,13 +47,13 @@ onMounted(() => {
     <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
       <!-- Sélection de la catégorie et des templates -->
       <div class="lg:col-span-3 flex flex-col gap-2 overflow-x-auto p-4 rounded-lg shadow-sm">
-        <div class="flex flex-row gap-4">
+        <div class="flex flex-row gap-4 mb-4">
           <div v-for="category in templateCategories" :key="category.id">
             <UButton
                 @click="selectCategory(category)"
                 :icon="category.icon"
                 :label="category.name"
-                variant="subtle"
+                variant="ghost"
                 class="cursor-pointer"
             ></UButton>
           </div>

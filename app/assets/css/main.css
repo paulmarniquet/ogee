@@ -1,10 +1,6 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
 
-:root {
-    --ui-primary: #OC1421;
-}
-
 .dark {
     --ui-primary: white;
 }
