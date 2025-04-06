@@ -120,7 +120,7 @@ onMounted(() => {
 <style scoped>
 .v-enter-active,
 .v-leave-active {
-  transition: opacity 0.5s ease, filter 0.5s ease;
+  transition: all 0.3s ease-in-out;
 }
 
 .v-enter-from,
