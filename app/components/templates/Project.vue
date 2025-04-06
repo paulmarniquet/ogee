@@ -1,5 +1,8 @@
 <script setup lang="ts">
 
+import NoiseEffect from "~/components/effects/NoiseEffect.vue";
+import GridEffect from "~/components/effects/GridEffect.vue";
+
 const props = defineProps({
   properties: {
     type: Object,
@@ -25,29 +28,8 @@ const props = defineProps({
       aspectRatio: properties.canvas?.width / properties.canvas?.height
       }"
     >
-      <!-- Grid background -->
-      <div
-          class="absolute inset-0 z-0"
-          :style="{
-          backgroundImage: generateGridPattern({grid: {...properties.grid}}),
-          backgroundRepeat: 'repeat',
-          mask: `radial-gradient(ellipse at center, rgba(0,0,0,1) 0%, rgba(0,0,0,1) ${blurStart}%, rgba(0,0,0,0) ${blurEnd}%)`
-        }"
-      ></div>
-
-      <!-- Noise texture -->
-      <div class="absolute inset-0 z-10 noise-container">
-        <NuxtImg
-            src="/noise.svg"
-            class="w-full h-full object-cover noise-image"
-            :style="{
-            opacity: properties.noise,
-            imageRendering: 'high-quality',
-            transform: 'scale(1.01)'
-          }"
-            alt="noise texture"
-        />
-      </div>
+      <GridEffect :blur-end="blurEnd" :grid="properties.grid" :blur-start="blurStart"/>
+      <NoiseEffect :noise="properties.noise"/>
 
       <!-- Content -->
       <div class="relative z-20 text-center flex flex-col items-center">
