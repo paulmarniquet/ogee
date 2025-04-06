@@ -101,17 +101,33 @@ onMounted(() => {
       <!-- Zone d'aperçu -->
       <div class="lg:col-span-2">
         <div class="shadow-sm rounded-lg p-6">
-          <component
-              v-if="selectedTemplate && selectedTemplate.name"
-              :is="'templates-' + selectedTemplate.name.toLowerCase()"
-              :properties="properties"
-              :blurStart="blurStart"
-              :blurEnd="blurEnd"
-              :canvas="properties.canvas"
-          />
+          <Transition>
+            <component
+                v-show="selectedTemplate && selectedTemplate.name"
+                :is="'templates-' + selectedTemplate.name.toLowerCase()"
+                :properties="properties"
+                :blurStart="blurStart"
+                :blurEnd="blurEnd"
+                :canvas="properties.canvas"
+            />
+          </Transition>
         </div>
         <Export :properties="properties"/>
       </div>
     </div>
   </div>
 </template>
+
+<style scoped>
+.v-enter-active,
+.v-leave-active {
+  transition: all 0.5s ease;
+  will-change: filter, opacity;
+  filter: blur(0px);
+}
+
+.v-enter-from,
+.v-leave-to {
+  filter: blur(10px);
+}
+</style>

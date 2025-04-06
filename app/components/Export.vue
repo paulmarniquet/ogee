@@ -37,7 +37,7 @@ const exportImage = async () => {
 
 <template>
   <UButton
-      class="btn-donate fixed bottom-4 right-[50%] p-2 px-4 bg-black hover:bg-black text-black shadow-lg z-[1000] !rounded-2xl cursor-pointer group
+      class="btn-donate fixed bottom-10 right-[50%] p-2 px-4 bg-black hover:bg-black text-black shadow-lg z-[1000] !rounded-2xl cursor-pointer group
     transform translate-x-1/2 hover:scale-105 transition-transform duration-300 ease-in-out flex items-center justify-center space-x-1"
       @click="exportImage"
   >
