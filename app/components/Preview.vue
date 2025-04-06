@@ -101,9 +101,8 @@ onMounted(() => {
       <!-- Zone d'aperçu -->
       <div class="lg:col-span-2">
         <div class="shadow-sm rounded-lg p-6">
-          <Transition>
+          <Transition mode="out-in">
             <component
-                v-show="selectedTemplate && selectedTemplate.name"
                 :is="'templates-' + selectedTemplate.name.toLowerCase()"
                 :properties="properties"
                 :blurStart="blurStart"
@@ -121,13 +120,12 @@ onMounted(() => {
 <style scoped>
 .v-enter-active,
 .v-leave-active {
-  transition: all 0.5s ease;
-  will-change: filter, opacity;
-  filter: blur(0px);
+  transition: opacity 0.5s ease, filter 0.5s ease;
 }
 
 .v-enter-from,
 .v-leave-to {
+  opacity: 0;
   filter: blur(10px);
 }
 </style>
