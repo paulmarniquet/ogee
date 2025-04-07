@@ -9,6 +9,11 @@ export default defineNuxtConfig({
         preference: 'light'
     },
 
+    routeRules: {
+        '/': {prerender: true},
+    },
+
+
     app: {
         head: {
             htmlAttrs: {
